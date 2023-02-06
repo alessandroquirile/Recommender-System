@@ -8,10 +8,10 @@ Loads data from specified dataset
 - `dataset::String`: dataset name (ml-latest, ml-latest-small, ml-100k, ml-1m, ml-10m, ml-20m, ml-25m)
 
 # Returns
-- `links::DataFrame`: links dataframe
-- `movies::DataFrame`: movies dataframe
-- `ratings::DataFrame`: ratings dataframe
-- `tags::DataFrame`: tags dataframe
+- `linksDataFrame::DataFrame`: links dataframe
+- `moviesDataFrame::DataFrame`: movies dataframe
+- `ratingsDataFrame::DataFrame`: ratings dataframe
+- `tagsDataFrame::DataFrame`: tags dataframe
 """
 function loadData(dataset)
     dataset_zip = dataset * ".zip"
@@ -22,10 +22,10 @@ function loadData(dataset)
         run(`unzip $dataset_zip`)
     end
 
-    links = DataFrame(CSV.File(dataset * "/links.csv"))
-    movies = DataFrame(CSV.File(dataset * "/movies.csv"))
-    ratings = DataFrame(CSV.File(dataset * "/ratings.csv"))
-    tags = DataFrame(CSV.File(dataset * "/tags.csv"))
+    linksDataFrame = DataFrame(CSV.File(dataset * "/links.csv"))
+    moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
+    ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
+    tagsDataFrame = DataFrame(CSV.File(dataset * "/tags.csv"))
 
-    return links, movies, ratings, tags
+    return linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame
 end

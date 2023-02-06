@@ -1,3 +1,3 @@
 include("dataset_injection.jl")
 
-links, movies, ratings, tags = loadData("ml-latest-small")
+linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame = loadData("ml-latest-small")
