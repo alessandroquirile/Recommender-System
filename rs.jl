@@ -2,7 +2,7 @@ function buildURM()
     # Initializes a Matrix of types {Missing or Float32} initialized to the value missing and has shape (numberOfUsers, numberOfMovies)
     URM = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, numberOfMovies)
 
-    for i=1:numberOfUsers
+    @threads for i=1:numberOfUsers
         userId = i
         userRatings = ratingsDataFrame[ratingsDataFrame.userId .== userId, :] # select all the ratings given by the current user
 
