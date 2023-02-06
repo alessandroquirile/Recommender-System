@@ -1,24 +1,22 @@
 function buildURM()
-    # Initializes a Matrix of types {Missing or Float32} initialized to the value missing and has shape (numberOfUsers, numberOfMovies)
-    URM = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, numberOfMovies)
-
+    URM = allocateMatrix(numberOfUsers, numberOfMovies)
     @threads for i=1:numberOfUsers
         userId = i
-        userRatings = ratingsDataFrame[ratingsDataFrame.userId .== userId, :] # select all the ratings given by the current user
-
+        userRatings = getUserRatings(ratingsDataFrame, userId)
         for j=1:numberOfMovies
-            movieId = moviesDataFrame[j, 1]
-
-            # find the rating given to the current movie 
-            rating = userRatings[userRatings.movieId .== movieId, 3] # rating is empty is no rating is found, a singleton if the rating is found
-
-            if length(rating) > 0 #if the user has rated the movie
+            movieId = getMovieId(moviesDataFrame, j)
+            rating = getUserRatingByMovieId(userRatings, movieId)
+            if !isEmpty(rating)
                 URM[i,j] = rating[1]
             end
         end
     end
-
     return URM
+end
+
+
+function allocateMatrix(rows, columns)
+    return Matrix{Union{Missing, Float32}}(missing, rows, columns)
 end
 
 
@@ -29,4 +27,31 @@ function getMovieIndexById(movieId)
         end
     end
     throw(KeyError(movieId))
+end
+
+
+function normalize(itr, min=1, max=5)
+    normalized = (itr .- min) / (max - min)
+    return normalized
+end
+
+
+function getUserRatings(ratingsDataFrame, userId)
+    return ratingsDataFrame[ratingsDataFrame.userId .== userId, :]
+end
+
+
+function getMovieId(moviesDataFrame, currentMovie)
+    idColumn = 1
+    return moviesDataFrame[currentMovie, idColumn]
+end
+
+
+function getUserRatingByMovieId(userRatings, movieId)
+    ratingColumn = 3
+    return userRatings[userRatings.movieId .== movieId, ratingColumn]
+end
+
+function isEmpty(rating)
+    return length(rating) == 0
 end
