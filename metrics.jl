@@ -13,14 +13,9 @@ Computes the Mean Squared Difference (MSD) based on provided inputs
 - High `msd` values implies high differences between `x` and `y`
 """
 function msd(x, y)
-    distance = d(x,y)
-    skippedMissingDistance = collect(skipmissing(distance))
-    if length(skippedMissingDistance) > 0
-        msd = mean(skippedMissingDistance)
-        return msd
-    else
-        return 1
-    end
+    x, y = validateArrays(x, y)
+    squaredDiff = squaredDifference(x, y)
+    return mean(squaredDiff)
 end
 
 """
@@ -34,18 +29,25 @@ Computes the Jaccard index based on provided inputs
 - `jaccard`: Jaccard index
 """
 function jaccard(x, y)
-    distance = d(x,y)
-    skippedMissingDistance = collect(skipmissing(distance))
-    commonVotedItems = length(skippedMissingDistance)
+    x, y = validateArrays(x, y)
+    intersection = Base.intersect(x, y)
+    union = Base.union(x, y)
+    return length(intersection) / length(union)
+end
 
-    itemsXVoted = length(collect(skipmissing(x)))
-    itemsYVoted = length(collect(skipmissing(y)))
-    totalVotedItems = itemsXVoted + itemsYVoted - commonVotedItems
+"""
+Validate input arrays
 
-    if totalVotedItems > 0
-        jaccard = commonVotedItems / totalVotedItems
-        return jaccard
-    end
+# Arguments
+- `x`: first array
+- `y`: second array
+
+# Returns
+- `x[valid], y[valid]`: containing non missing values
+"""
+function validateArrays(x, y)
+    valid = .!ismissing.(x) .& .!ismissing.(y)  # not missing values
+    return x[valid], y[valid]
 end
 
 """
@@ -59,12 +61,11 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `newMetric`: new similarity metric
 """
 function newMetric(x, y)
-    newMetric = jaccard(x, y) * (1 - msd(x, y))
-    return newMetric
+    return jaccard(x, y) * (1 - msd(x, y))
 end
 
 """
-Computes the distance based on provided inputs
+Computes the squared difference based on provided inputs
 
 # Arguments
 - `x`: first user's ratings
@@ -73,7 +74,6 @@ Computes the distance based on provided inputs
 # Returns
 - `distance`: distance
 """
-function d(x, y)
-    distance = (x .- y).^2
-    return distance
+function squaredDifference(x, y)
+    return (x .- y).^2
 end
