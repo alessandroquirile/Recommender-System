@@ -23,7 +23,7 @@ docs/site/
 # environment.
 Manifest.toml
 
-# User-definied: ignores zip, csv and anything in ml-latest-small/ folder
+# Ignores zip, csv and anything in ml-latest-small folder
 *.zip
 *.csv
 ml-latest-small/*
