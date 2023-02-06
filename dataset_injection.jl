@@ -17,15 +17,18 @@ function loadData(dataset)
     dataset_zip = dataset * ".zip"
 
     if !isfile(dataset_zip)
+        println("Downloading " * dataset_zip)
         url = "https://files.grouplens.org/datasets/movielens/" * dataset_zip
         download(url, dataset_zip)
         run(`unzip $dataset_zip`)
     end
 
+    println("Loading the dataset...")
     linksDataFrame = DataFrame(CSV.File(dataset * "/links.csv"))
     moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
     ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
     tagsDataFrame = DataFrame(CSV.File(dataset * "/tags.csv"))
 
+    println("Dataset loaded")
     return linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame
 end
