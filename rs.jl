@@ -50,7 +50,24 @@ function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
     # Sort similarities by the second column (similarity) descending order
     similarities = similarities[sortperm(-similarities[:, similarityColumn]), :]
 
-    # Retrieve the first k indices (userIds)    
+    # Retrieve the first k indices (userIds)
     n = min(k, numberOfUsers)
     return Int.(similarities[1:n, userIdColumn])
+end
+
+
+function getUserNeighborsWhichRatedItem(trainingURM, user, k, item)
+    # Ottengo il vicinato (userIds)
+    knn = kNearestNeighbors(trainingURM, user, k)
+    knnWhichRatedItem = []
+
+    # Filtro il vicinato selezionado soltando gli utenti che hanno espresso almeno un rating (non missing) per item
+    for i in eachindex(knn)
+        if !ismissing(trainingURM[knn[i], item])
+            append!(knnWhichRatedItem, knn[i])
+        end
+    end
+
+    # userIds
+    return knnWhichRatedItem
 end
