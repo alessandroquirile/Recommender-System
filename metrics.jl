@@ -12,7 +12,7 @@ Computes the Mean Squared Difference (MSD) based on provided inputs
 - `x`, `y` in [0;1] implies `msd` in [0;1]
 - High `msd` values implies high differences between `x` and `y`
 """
-function msd(x, y)
+function meanSquaredDifference(x, y)
     x, y = validateArrays(x, y)
     squaredDiff = squaredDifference(x, y)
     return mean(squaredDiff)
@@ -61,7 +61,7 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `newMetric`: new similarity metric
 """
 function newMetric(x, y)
-    return jaccard(x, y) * (1 - msd(x, y))
+    return jaccard(x, y) * (1 - meanSquaredDifference(x, y))
 end
 
 """
@@ -76,4 +76,20 @@ Computes the squared difference based on provided inputs
 """
 function squaredDifference(x, y)
     return (x .- y).^2
+end
+
+
+"""
+Computes the Mean Absolute Error (MAE) based on provided inputs
+
+# Arguments
+- `target`: target vector
+- `prediction`: prediction vector
+
+# Returns
+- `mae`: mean absolute error
+"""
+function meanAbsoluteError(target, prediction)
+    absoluteDifference = broadcast(abs,(target - prediction))
+    return sum(absoluteDifference) / length(target)
 end
