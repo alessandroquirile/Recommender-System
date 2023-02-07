@@ -16,13 +16,17 @@ numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 printStatistics()
 
-
+# Splitting in training and test set
 testSetSize = 0.10
+trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, 0)
+
+
 for kFoldIndex = 0:9
     println("Running fold number $kFoldIndex")
 
-    # Splitting in training and test set
-    trainingDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, kFoldIndex)
+    validationSetSize = 0.10
+    trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies, validationSetSize, kFoldIndex)
+
     # Building the URM
     trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
 
