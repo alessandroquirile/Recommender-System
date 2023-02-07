@@ -7,6 +7,7 @@ include("rs.jl")
 include("dataset_analysis.jl")
 include("metrics.jl")
 include("dataset_split.jl")
+include("aggregation_methods.jl")
 
 # Data injection
 moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
