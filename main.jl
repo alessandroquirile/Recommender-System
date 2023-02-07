@@ -8,6 +8,7 @@ include("dataset_analysis.jl")
 include("metrics.jl")
 include("dataset_split.jl")
 include("aggregation_methods.jl")
+include("performance_evaluation.jl")
 
 # Data injection
 moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
@@ -21,6 +22,7 @@ printStatistics()
 # Training and test set splitting
 testSetSize = 0.10
 trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, 0)
+testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 
 kFoldIndex = 0 # TODO: togliere questa riga
@@ -39,3 +41,7 @@ kFoldIndex = 0 # TODO: togliere questa riga
     printInfo(trainingURM)
     printDensity(trainingURM, trainingDataFrame)
 #end
+
+
+# Performance evaluation
+evaluatePerformance()
