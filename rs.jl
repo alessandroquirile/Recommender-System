@@ -37,14 +37,17 @@ function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
     numberOfUsers = size(trainingURM, 1)
     similarities = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, 2)
 
+    # For each user in trainingURM, append similarity to similarities
     for i=1:numberOfUsers
-        similarity = metric(user, trainingURM[i,:])
+        similarity = metric(user, trainingURM[i, :])
         similarities[i, 1] = i
         similarities[i, 2] = similarity
     end
 
-    similarities = similarities[sortperm(similarities[:,2]), :]
+    # Sort similarities by the second column (similarity) descending order
+    similarities = similarities[sortperm(-similarities[:, 2]), :]
 
+    # Retrieve the first k indices (userIds)    
     n = min(k, numberOfUsers)
-    return similarities[1:n, 2]
+    return Int.(similarities[1:n, 1])
 end
