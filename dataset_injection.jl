@@ -23,12 +23,12 @@ function loadData(dataset)
         run(`unzip $dataset_zip`)
     end
 
-    println("Loading the dataset...")
+    println("# Loading $dataset dataset...")
     linksDataFrame = DataFrame(CSV.File(dataset * "/links.csv"))
     moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
     ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
     tagsDataFrame = DataFrame(CSV.File(dataset * "/tags.csv"))
 
-    println("Dataset loaded")
+    println("Dataset loaded\n")
     return linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame
 end

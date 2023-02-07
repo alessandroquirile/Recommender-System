@@ -1,4 +1,4 @@
-function buildURM()
+function buildURM(numberOfUsers, numberOfMovies)
     URM = allocateMatrix(numberOfUsers, numberOfMovies)
     @threads for i=1:numberOfUsers
         userId = i
@@ -54,4 +54,20 @@ end
 
 function isEmpty(rating)
     return length(rating) == 0
+end
+
+
+function printInfo(urm)
+    numberOfUsers, numberOfMovies = size(urm)
+    println("Loaded $numberOfUsers users and $numberOfMovies movies")
+    println("URM shape is ($numberOfUsers, $numberOfMovies)")
+end
+
+
+function printDensity(urm, ratingsDataFrame)
+    numberOfUsers, numberOfMovies = size(urm)
+    numberOfRatings = size(ratingsDataFrame, 1)
+    density = numberOfRatings / (numberOfMovies * numberOfUsers)
+    println("Found $numberOfRatings ratings")
+    println("URM density is $(round(density*100, digits=3))%")
 end
