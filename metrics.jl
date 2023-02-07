@@ -90,6 +90,6 @@ Computes the Mean Absolute Error (MAE) based on provided inputs
 - `mae`: mean absolute error
 """
 function meanAbsoluteError(target, prediction)
-    absoluteDifference = broadcast(abs,(target - prediction))
+    absoluteDifference = broadcast(abs, skipmissing((target - prediction)))
     return sum(absoluteDifference) / length(target)
 end
