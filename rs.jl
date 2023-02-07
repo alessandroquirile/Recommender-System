@@ -72,3 +72,20 @@ function printDensity(urm, ratingsDataFrame)
     println("Found $numberOfRatings ratings")
     println("URM density is $(round(density*100, digits=3))%")
 end
+
+
+function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
+    numberOfUsers = size(trainingURM, 1)
+    similarities = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, 2)
+
+    for i=1:numberOfUsers
+        similarity = metric(user, trainingURM[i,:])
+        similarities[i, 1] = i
+        similarities[i, 2] = similarity
+    end
+
+    similarities = similarities[sortperm(similarities[:,2]), :]
+
+    n = min(k, numberOfUsers)
+    return similarities[1:n, 2]
+end
