@@ -56,9 +56,9 @@ function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
 end
 
 
-function getUserNeighborsWhichRatedItem(trainingURM, user, k, item)
+function getUserNeighborsWhichRatedItem(trainingURM, user, k, item, metric=newMetric)
     # Ottengo il vicinato (userIds)
-    knn = kNearestNeighbors(trainingURM, user, k)
+    knn = kNearestNeighbors(trainingURM, user, k, metric)
     knnWhichRatedItem = []
 
     # Filtro il vicinato selezionado soltando gli utenti che hanno espresso almeno un rating (non missing) per item
