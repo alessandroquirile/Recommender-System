@@ -7,7 +7,7 @@ include("dataset_analysis.jl")
 include("metrics.jl")
 
 # Data injection
-linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame = loadData("ml-latest-small")
+moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
 
 numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userId" values in ratingsDataFrame
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
