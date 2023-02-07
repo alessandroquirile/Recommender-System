@@ -1,0 +1,40 @@
+function allocateMatrix(rows, columns)
+    return Matrix{Union{Missing, Float32}}(missing, rows, columns)
+end
+
+
+function getMovieIndexById(movieId)
+    for i=1:numberOfMovies
+        if moviesDataFrame[i,1] == movieId
+            return i
+        end
+    end
+    throw(KeyError(movieId))
+end
+
+
+function normalize(itr, min=1, max=5)
+    normalized = (itr .- min) / (max - min)
+    return normalized
+end
+
+
+function getUserRatings(ratingsDataFrame, userId)
+    return ratingsDataFrame[ratingsDataFrame.userId .== userId, :]
+end
+
+
+function getMovieId(moviesDataFrame, currentMovie)
+    idColumn = 1
+    return moviesDataFrame[currentMovie, idColumn]
+end
+
+
+function getUserRatingByMovieId(userRatings, movieId)
+    ratingColumn = 3
+    return userRatings[userRatings.movieId .== movieId, ratingColumn]
+end
+
+function isEmpty(rating)
+    return length(rating) == 0
+end

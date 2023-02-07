@@ -2,6 +2,7 @@ using Statistics
 using Plots
 using Base.Threads
 include("dataset_injection.jl")
+include("utils.jl")
 include("rs.jl")
 include("dataset_analysis.jl")
 include("metrics.jl")
