@@ -23,3 +23,22 @@ function showHistogram(histogram)
     println("Press a key to continue...")
     readline()
 end
+
+
+function printStatistics()
+    # Value of votes histogram
+    valueOfVotes = histogram(ratingsDataFrame.rating, title="Value of votes")
+
+    # Arithmetic average histogram
+    moviesRatingAverage = getAverage(ratingsDataFrame, :movieId)
+    arithmeticAverageHistogram = histogram(moviesRatingAverage.rating_function, title="Arithmetic average") # TODO: change x axis step size
+
+    # Standard deviation histogram
+    moviesRatingStdDev = getStdDev(ratingsDataFrame, :movieId, true)
+    stdDevHistogram = histogram(moviesRatingStdDev.rating_function, title="Standard deviation") # TODO: change x axis step size
+
+    # Plotting histograms
+    showHistogram(valueOfVotes)
+    showHistogram(arithmeticAverageHistogram)
+    showHistogram(stdDevHistogram)
+end

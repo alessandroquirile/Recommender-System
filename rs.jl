@@ -1,4 +1,5 @@
-function buildURM(numberOfUsers, numberOfMovies)
+function buildURM(ratingsDataFrame, numberOfUsers, numberOfMovies)
+    println("# Building the User Rating Matrix (URM)...")
     URM = allocateMatrix(numberOfUsers, numberOfMovies)
     @threads for i=1:numberOfUsers
         userId = i

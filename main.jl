@@ -5,6 +5,7 @@ include("dataset_injection.jl")
 include("rs.jl")
 include("dataset_analysis.jl")
 include("metrics.jl")
+include("dataset_split.jl")
 
 # Data injection
 moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
@@ -12,24 +13,23 @@ moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
 numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userId" values in ratingsDataFrame
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
-# Building the URM
-println("# Building the User Rating Matrix (URM)...")
-urm = buildURM(numberOfUsers, numberOfMovies)
-printInfo(urm)
-printDensity(urm, ratingsDataFrame)
 
-# Value of votes histogram
-valueOfVotes = histogram(ratingsDataFrame.rating, title="Value of votes")
+printStatistics()
 
-# Arithmetic average histogram
-moviesRatingAverage = getAverage(ratingsDataFrame, :movieId)
-arithmeticAverageHistogram = histogram(moviesRatingAverage.rating_function, title="Arithmetic average") # TODO: change x axis step size
 
-# Standard deviation histogram
-moviesRatingStdDev = getStdDev(ratingsDataFrame, :movieId, true)
-stdDevHistogram = histogram(moviesRatingStdDev.rating_function, title="Standard deviation") # TODO: change x axis step size
+testSetSize = 0.10
+for kFoldIndex = 0:9
+    println("Running fold number $kFoldIndex")
 
-# Plotting histograms
-showHistogram(valueOfVotes)
-showHistogram(arithmeticAverageHistogram)
-showHistogram(stdDevHistogram)
+    # Splitting in training and test set
+    trainingDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, kFoldIndex)
+    # Building the URM
+    trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
+
+    printInfo(trainingURM)
+    printDensity(trainingURM, trainingDataFrame)
+end
+
+
+
+
