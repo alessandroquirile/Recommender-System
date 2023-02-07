@@ -1,48 +1,64 @@
-function averageAggregation(trainingURM, user, k, item)
-    knnWhichRatedItem =  getUserNeighborsWhichRatedItem(trainingURM, user, k, item)
+function averageAggregation(urm, user, item, k, metric=newMetric)
+    knnWhichRatedItem = getUserNeighborsWhichRatedItem(urm, user, k, item, metric)
     if length(knnWhichRatedItem) != 0 
-        ratings = trainingURM[knnWhichRatedItem, item]
-        return mean(ratings)
+        itemRatingsGivenByNeighbors = urm[knnWhichRatedItem, item]
+        return mean(itemRatingsGivenByNeighbors)
     end
+
+    return missing
 end
 
 
-function weightedSumAggregation(trainingURM, user, item, k, metric=newMetric)
-    sum = 0
-    knnWhichRatedItem =  getUserNeighborsWhichRatedItem(trainingURM, user, k, item)
+function weightedSumAggregation(urm, user, item, k, metric=newMetric)
+    sum = 0.0
+    knnWhichRatedItem = getUserNeighborsWhichRatedItem(urm, user, k, item, metric)
     if length(knnWhichRatedItem) != 0 
-        for i in eachindex(knnWhichRatedItem)
-            user_i = trainingURM[knnWhichRatedItem[i], :]
-            similarity = metric(user, user_i)
-            sum += similarity * trainingURM[knnWhichRatedItem[i], item]
+        for n in eachindex(knnWhichRatedItem)
+            currentNeighbor = urm[knnWhichRatedItem[n], :]
+            itemRatingGivenByCurrentNeighbor = currentNeighbor[item]
+
+            similarity = metric(user, currentNeighbor)
+            sum += similarity * itemRatingGivenByCurrentNeighbor
         end
-        return sum * normalizingFactor(trainingURM, knnWhichRatedItem, user, metric)
+
+        mi = normalizingFactor(urm, knnWhichRatedItem, user, metric)
+        return sum * mi
     end
+
+    return missing
 end
 
 
-function adjustedWeightedSumAggregation(trainingURM, user, item, k, metric=newMetric)
-    sum = 0
-    knnWhichRatedItem =  getUserNeighborsWhichRatedItem(trainingURM, user, k, item)
+function adjustedWeightedSumAggregation(urm, user, item, k, metric=newMetric)
+    sum = 0.0
+    knnWhichRatedItem = getUserNeighborsWhichRatedItem(urm, user, k, item, metric)
     if length(knnWhichRatedItem) != 0 
-        for i in eachindex(knnWhichRatedItem)
-            user_i = trainingURM[knnWhichRatedItem[i], :]
-            similarity = metric(user, user_i)
-            sum += similarity * (trainingURM[knnWhichRatedItem[i], item] - mean(collect(skipmissing(user_i))))
+        for n in eachindex(knnWhichRatedItem)
+            currentNeighbor = urm[knnWhichRatedItem[n], :]
+            itemRatingGivenByCurrentNeighbor = currentNeighbor[item]
+            meanRatingsOfCurrentNeighbor = mean(collect(skipmissing(currentNeighbor)))
+
+            similarity = metric(user, currentNeighbor)
+            sum += similarity * (itemRatingGivenByCurrentNeighbor - meanRatingsOfCurrentNeighbor)
         end
-        return mean(collect(skipmissing(user))) + sum * normalizingFactor(trainingURM, knnWhichRatedItem, user, metric)
+
+        meanRatingsOfGivenUser = mean(collect(skipmissing(user)))
+        mi = normalizingFactor(urm, knnWhichRatedItem, user, metric)
+        return meanRatingsOfGivenUser + sum * mi
     end
+
+    return missing
 end
 
 
 function normalizingFactor(trainingURM, knnWhichRatedItem, user, metric=newMetric)
-    sum = 0
+    sum = 0.0
     if length(knnWhichRatedItem) != 0 
-        for i in eachindex(knnWhichRatedItem)
-            user_i = trainingURM[knnWhichRatedItem[i], :]
-            similarity = metric(user, user_i)
+        for n in eachindex(knnWhichRatedItem)
+            user_n = trainingURM[knnWhichRatedItem[n], :]
+            similarity = metric(user, user_n)
             sum += similarity
         end
-        return 1 / sum
+        return 1.0 / sum
     end
 end
