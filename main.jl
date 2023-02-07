@@ -22,7 +22,10 @@ printStatistics()
 testSetSize = 0.10
 trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, 0)
 
-for kFoldIndex = 0:9
+
+kFoldIndex = 0 # TODO: togliere questa riga
+#for kFoldIndex = 0:9
+
     println("Running fold number $kFoldIndex")
 
     # Training and validation set splitting
@@ -35,4 +38,4 @@ for kFoldIndex = 0:9
     # Printing info
     printInfo(trainingURM)
     printDensity(trainingURM, trainingDataFrame)
-end
+#end
