@@ -1,12 +1,12 @@
-function computeModelError(aggregationMethod, k, metric, errorFunction)
-    testSetItemCount = size(testDataFrame, 1)
+function computeModelError(trainingURM, targetDataFrame, aggregationMethod, k, metric, errorFunction)
+    testSetItemCount = size(targetDataFrame, 1)
     predictions = Vector{Union{Missing, Float64}}(undef, testSetItemCount)
-    targets = testDataFrame[:, :rating]
+    targets = targetDataFrame[:, :rating]
     targets = normalize(targets, getRatingRange())
 
     @threads for i = 1:testSetItemCount
-        userId = testDataFrame[i, :userId]
-        movieId = testDataFrame[i, :movieId]
+        userId = targetDataFrame[i, :userId]
+        movieId = targetDataFrame[i, :movieId]
         item = getMovieIndexById(movieId)
 
         user = testURM[userId, :]
@@ -15,14 +15,4 @@ function computeModelError(aggregationMethod, k, metric, errorFunction)
 
     error = errorFunction(targets, predictions)
     return error
-end
-
-function evaluatePerformance()
-    k = 10
-    metric = newMetric
-    aggregationMethod = averageAggregation
-    errorFunction = meanAbsoluteError
-    
-    error = computeModelError(aggregationMethod, k, metric, errorFunction)
-    println("MAE for averageAggregation, newMetric, k=$k: $error")
 end

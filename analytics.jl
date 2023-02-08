@@ -42,3 +42,12 @@ function printStatistics()
     showHistogram(arithmeticAverageHistogram)
     showHistogram(stdDevHistogram)
 end
+
+# Plot validation errors
+function plotValidationHistory(validationErrors)
+    xAxis = [x[1] for x in validationErrors]
+    yAxis = [x[2] for x in validationErrors]
+    plot(xAxis, yAxis, title="Validation errors (MAE)")
+    xlabel!("kNN size")
+    ylabel!("Validation error")
+end
