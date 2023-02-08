@@ -59,3 +59,7 @@ function donwloadDataset(dataset)
         run(`unzip $dataset_zip`)
     end
 end
+
+function getRatingRange()
+    return 1:5
+end

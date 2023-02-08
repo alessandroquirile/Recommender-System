@@ -2,6 +2,7 @@ function computeModelError(aggregationMethod, k, metric, errorFunction)
     testSetItemCount = size(testDataFrame, 1)
     predictions = Vector{Union{Missing, Float64}}(undef, testSetItemCount)
     targets = testDataFrame[:, :rating]
+    targets = normalize(targets, getRatingRange())
 
     @threads for i = 1:testSetItemCount
         userId = testDataFrame[i, :userId]

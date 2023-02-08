@@ -1,4 +1,4 @@
-function buildURM(ratingsDataFrame, numberOfUsers, numberOfMovies)
+function buildURM(ratingsDataFrame, numberOfUsers, numberOfMovies, normalizeURM::Bool=true)
     println("# Building the User Rating Matrix (URM)...")
     URM = allocateMatrix(numberOfUsers, numberOfMovies)
     @threads for i=1:numberOfUsers
@@ -11,6 +11,9 @@ function buildURM(ratingsDataFrame, numberOfUsers, numberOfMovies)
                 URM[i,j] = rating[1]
             end
         end
+    end
+    if normalizeURM
+        URM = normalize(URM, getRatingRange())
     end
     return URM
 end
