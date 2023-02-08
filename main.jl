@@ -47,16 +47,17 @@ for k in knnMin:knnStep:knnMax # foreach parameter
         # Training and validation set splitting
         validationSetSize = 0.10
         trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies, validationSetSize, kFoldIndex)
-
+        
         # Building the URM
         trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
+        validationURM = buildURM(validationDataFrame, numberOfUsers, numberOfMovies)
 
         # Printing info
         printInfo(trainingURM)
         printDensity(trainingURM, trainingDataFrame)
 
         # Compute validation error
-        foldError = computeModelError(trainingURM, validationDataFrame, aggregationMethod, k, similarityMetric, errorFunction)
+        foldError = computeModelError(trainingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
         println("Validation error for k=$k, fold #$(kFoldIndex+1) is $foldError")
         errorSum = errorSum + foldError
     end
@@ -76,6 +77,6 @@ println("Best k is $bestK")
 
 # Building the URM
 trainingURM = buildURM(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies)
-error = computeModelError(trainingURM, testDataFrame, aggregationMethod, bestK, similarityMetric, errorFunction)
+error = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestK, similarityMetric, errorFunction)
 
 println("MAE on test set is $error")

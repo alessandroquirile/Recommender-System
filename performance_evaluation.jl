@@ -1,4 +1,4 @@
-function computeModelError(trainingURM, targetDataFrame, aggregationMethod, k, metric, errorFunction)
+function computeModelError(trainingURM, targetDataFrame, targetURM, aggregationMethod, k, metric, errorFunction)
     testSetItemCount = size(targetDataFrame, 1)
     predictions = Vector{Union{Missing, Float64}}(undef, testSetItemCount)
     targets = targetDataFrame[:, :rating]
@@ -9,7 +9,7 @@ function computeModelError(trainingURM, targetDataFrame, aggregationMethod, k, m
         movieId = targetDataFrame[i, :movieId]
         item = getMovieIndexById(movieId)
 
-        user = testURM[userId, :]
+        user = targetURM[userId, :]
         predictions[i] = aggregationMethod(trainingURM, user, item, k, metric)
     end
 
