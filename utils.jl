@@ -13,11 +13,10 @@ function getMovieIndexById(movieId)
 end
 
 
-function normalize(itr, range)
+function normalize!(itr, range)
     min = minimum(range)
     max = maximum(range)
-    normalized = (itr .- min) / (max - min)
-    return normalized
+    itr = (itr .- min) / (max - min)
 end
 
 

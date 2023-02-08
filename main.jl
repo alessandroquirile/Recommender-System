@@ -17,7 +17,7 @@ numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userI
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Print data set statistics
-printStatistics()
+#printStatistics()
 
 # Training and test set splitting
 testSetSize = 0.10
@@ -32,9 +32,9 @@ errorFunction = meanAbsoluteError
 
 
 knnMin = 2
-knnMax = 10
-knnStep = 2
-numberOfKFolds = 10
+knnMax = 100
+knnStep = 10
+numberOfKFolds = 3
 
 validationErrors = []
 
@@ -52,14 +52,12 @@ for k in knnMin:knnStep:knnMax # foreach parameter
         trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
         validationURM = buildURM(validationDataFrame, numberOfUsers, numberOfMovies)
 
-        # Printing info
-        printInfo(trainingURM)
-        printDensity(trainingURM, trainingDataFrame)
-
         # Compute validation error
         foldError = computeModelError(trainingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
         println("Validation error for k=$k, fold #$(kFoldIndex+1) is $foldError")
         errorSum = errorSum + foldError
+
+        GC.gc(true) # Explicit call to the garbage collector to make sure no memory is leaked
     end
 
     # Compute validation error as the average of validation errors on each folds
@@ -77,6 +75,10 @@ println("Best k is $bestK")
 
 # Building the URM
 trainingURM = buildURM(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies)
+# Printing info
+printInfo(trainingURM)
+printDensity(trainingURM, trainingAndValidationDataFrame)
+# Compute model error on the Test Set
 error = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestK, similarityMetric, errorFunction)
 
 println("MAE on test set is $error")

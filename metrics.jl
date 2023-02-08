@@ -13,9 +13,7 @@ Computes the Mean Squared Difference (MSD) based on provided inputs
 - High `msd` values implies high differences between `x` and `y`
 """
 function meanSquaredDifference(x, y)
-    x, y = validateArrays(x, y)
-    squaredDiff = squaredDifference(x, y)
-    return mean(squaredDiff)
+    return mean(squaredDifference(x, y))
 end
 
 """
@@ -29,9 +27,8 @@ Computes the Jaccard index based on provided inputs
 - `jaccard`: Jaccard index
 """
 function jaccard(x, y)
-    x, y = validateArrays(x, y)
-    intersection = Base.intersect(x, y)
-    union = Base.union(x, y)
+    local intersection = Base.intersect(x, y)
+    local union = Base.union(x, y)
     return length(intersection) / length(union)
 end
 
@@ -46,7 +43,7 @@ Validate input arrays
 - `x[valid], y[valid]`: containing non missing values
 """
 function validateArrays(x, y)
-    valid = .!ismissing.(x) .& .!ismissing.(y)  # not missing values
+    local valid = .!ismissing.(x) .& .!ismissing.(y)  # not missing values
     return x[valid], y[valid]
 end
 
@@ -61,6 +58,7 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `newMetric`: new similarity metric
 """
 function newMetric(x, y)
+    x, y = validateArrays(x, y)
     return jaccard(x, y) * (1 - meanSquaredDifference(x, y))
 end
 
@@ -90,6 +88,5 @@ Computes the Mean Absolute Error (MAE) based on provided inputs
 - `mae`: mean absolute error
 """
 function meanAbsoluteError(target, prediction)
-    absoluteDifference = broadcast(abs, skipmissing((target - prediction)))
-    return sum(absoluteDifference) / length(target)
+    return mean(broadcast(abs, skipmissing((target - prediction))))
 end

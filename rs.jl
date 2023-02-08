@@ -13,7 +13,7 @@ function buildURM(ratingsDataFrame, numberOfUsers, numberOfMovies, normalizeURM:
         end
     end
     if normalizeURM
-        URM = normalize(URM, getRatingRange())
+        normalize!(URM, getRatingRange())
     end
     return URM
 end
