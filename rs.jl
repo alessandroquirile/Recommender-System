@@ -38,8 +38,7 @@ end
 
 function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
     numberOfUsers = size(trainingURM, 1)
-    # (numberOfUsers, 2) shape
-    similarities = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, 2)
+    similarities = Matrix{Union{Missing, Float32}}(missing, numberOfUsers, 2)  # (numberOfUsers, 2) shape
 
     # For each user in trainingURM, append similarity to similarities
     userIdColumn = 1
@@ -58,16 +57,28 @@ function kNearestNeighbors(trainingURM, user, k, metric=newMetric)
     return Int.(similarities[1:n, userIdColumn])
 end
 
+"""
+Calculates a list of the knn ids w.r.t. user's ratings given to input item
 
-function getUserNeighborsWhichRatedItem(trainingURM, user, k, item, metric=newMetric)
+# Arguments
+- `trainingURM`: the training URM
+- `user`: user's ratings
+- `k`: knn parameter
+- `item`: item id
+- `metric`: similarity metric
+
+# Returns
+- `knn`: list of knn ids
+"""
+function knnWhichRatedItem(trainingURM, user, k, item, metric=newMetric)
     # Ottengo il vicinato (userIds)
     knn = kNearestNeighbors(trainingURM, user, k, metric)
     knnWhichRatedItem = []
 
-    # Filtro il vicinato selezionado soltando gli utenti che hanno espresso almeno un rating (non missing) per item
-    for i in eachindex(knn)
-        if !ismissing(trainingURM[knn[i], item])
-            append!(knnWhichRatedItem, knn[i])
+    # Filtro il vicinato selezionando solo gli utenti che hanno espresso almeno un rating (non missing) per item
+    for n in eachindex(knn)
+        if !ismissing(trainingURM[knn[n], item])
+            append!(knnWhichRatedItem, knn[n])
         end
     end
 

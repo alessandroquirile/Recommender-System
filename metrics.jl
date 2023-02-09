@@ -55,7 +55,7 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `y`: second user's ratings
 
 # Returns
-- `newMetric`: new similarity metric
+- `newMetric`: a new similarity metric based on Jaccard and MSD
 """
 function newMetric(x, y)
     x, y = validateArrays(x, y)
