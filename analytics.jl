@@ -1,20 +1,35 @@
 function getAverage(dataFrame::DataFrame, groupByCols, rounded::Bool=true)
     dfGrouped = groupby(dataFrame, groupByCols)
-    dfMean = combine(dfGrouped, :rating => x -> mean(x))
-    if rounded
-        dfMean = combine(dfGrouped, :rating => x -> round(mean(x), digits=1))
-    end
+    dfMean = combine(dfGrouped, :rating => x -> getMean(x, rounded))
+
     return dfMean
 end
 
 
 function getStdDev(dataFrame::DataFrame, groupByCols, corrected::Bool, rounded::Bool=true)
     dfGrouped = groupby(dataFrame, groupByCols)
-    dfStdDev = combine(dfGrouped, :rating => x -> std(collect(skipmissing(x)), corrected=corrected))
-    if rounded
-        dfStdDev = combine(dfGrouped, :rating => x -> round(std(collect(skipmissing(x)), corrected=corrected), digits=1))
-    end
+    dfStdDev = combine(dfGrouped, :rating => x -> getStdDevOfNonMissingValues(x, corrected, rounded))
+
     return dfStdDev
+end
+
+function getMean(values,  rounded::Bool=true)
+    mean = mean(values)
+    if (rounded)
+        mean = round(mean, digits=1)
+    end
+    return mean
+end
+
+function getStdDevOfNonMissingValues(values, corrected::Bool, rounded::Bool=true)
+    nonMissingValues = collect(skipmissing(values))
+    stdDev = std(nonMissingValues, corrected=corrected)
+
+    if (rounded)
+        stdDev = round(stdDev, digits=1)
+    end
+
+    return stdDev
 end
 
 
@@ -47,7 +62,7 @@ end
 function plotValidationHistory(validationErrors)
     xAxis = [x[1] for x in validationErrors]
     yAxis = [x[2] for x in validationErrors]
-    plot(xAxis, yAxis, title="Validation errors (MAE)")
+    plot(xAxis, yAxis, title="Validation errors (MAE)", show=true)
     xlabel!("kNN size")
     ylabel!("Validation error")
 end
