@@ -55,6 +55,11 @@ end
 
 
 function normalizingFactor(trainingURM, knnForItem, userRatings, metric=newMetric)
-    sumOfSimilarities = sum(metric(userRatings, trainingURM[neighborId, :]) for neighborId in eachindex(knnForItem))
-    return 1.0 / sumOfSimilarities
+    sum = 0.0
+    for neighborId in eachindex(knnForItem)
+        neighborRatings = trainingURM[knnForItem[neighborId], :]
+        similarity = metric(userRatings, neighborRatings)
+        sum += similarity
+    end
+    return 1.0 / sum
 end
