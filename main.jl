@@ -26,9 +26,14 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Model parameters
 similarityMetric = newMetric
-aggregationMethod = adjustedWeightedSumAggregation #averageAggregation
+aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
 
+println("Printing model parameters...")
+println(" # Similarity metric: $similarityMetric")
+println(" # Aggregation method: $aggregationMethod")
+println(" # Error function: $errorFunction")
+prtinln("")
 
 
 knnMin = 2
