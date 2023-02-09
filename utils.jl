@@ -36,6 +36,7 @@ function getUserRatingByMovieId(userRatings, movieId)
     return userRatings[userRatings.movieId .== movieId, ratingColumn]
 end
 
+
 function isEmpty(rating)
     return length(rating) == 0
 end
