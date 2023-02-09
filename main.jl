@@ -26,7 +26,7 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Model parameters
 similarityMetric = newMetric
-aggregationMethod = averageAggregation
+aggregationMethod = adjustedWeightedSumAggregation #averageAggregation
 errorFunction = meanAbsoluteError
 
 
@@ -39,10 +39,11 @@ numberOfKFolds = 3
 validationErrors = []
 
 for k in knnMin:knnStep:knnMax # foreach parameter
+    println("- Running for neighborhood size k=$k")
     errorSum = 0.0
     for kFoldIndex = 0:numberOfKFolds-1
 
-        println("Running fold number $kFoldIndex")
+        println("\t- Running fold number $(kFoldIndex + 1)")
 
         # Training and validation set splitting
         validationSetSize = 0.10
@@ -54,7 +55,7 @@ for k in knnMin:knnStep:knnMax # foreach parameter
 
         # Compute validation error
         foldError = computeModelError(trainingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
-        println("Validation error for k=$k, fold #$(kFoldIndex+1) is $foldError")
+        println("\t\t- Validation error is $foldError")
         errorSum = errorSum + foldError
 
         GC.gc(true) # Explicit call to the garbage collector to make sure no memory is leaked
