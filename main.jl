@@ -33,13 +33,13 @@ println("Printing model parameters...")
 println(" # Similarity metric: $similarityMetric")
 println(" # Aggregation method: $aggregationMethod")
 println(" # Error function: $errorFunction")
-prtinln("")
+println("")
 
 
 knnMin = 2
-knnMax = 100
-knnStep = 10
-numberOfKFolds = 3
+knnMax = 200
+knnStep = 50
+numberOfKFolds = 1
 
 validationErrors = []
 
@@ -77,8 +77,10 @@ plotValidationHistory(validationErrors)
 # Performance evaluation
 sort!(validationErrors, by = x -> x[2])
 bestK = validationErrors[1][1]
-println("Best k is $bestK")
+println("Best parameters:")
+println(" # neighborhood size k = $bestK")
 
+println(" - Evaluating performance on test set")
 # Building the URM
 trainingURM = buildURM(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies)
 # Printing info
