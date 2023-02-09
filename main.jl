@@ -21,7 +21,7 @@ numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Training and test set splitting
 testSetSize = 0.10
-trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, numberOfUsers, numberOfMovies, testSetSize, 0)
+trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, testSetSize, 0)
 testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Model parameters
@@ -46,7 +46,7 @@ for k in knnMin:knnStep:knnMax # foreach parameter
 
         # Training and validation set splitting
         validationSetSize = 0.10
-        trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies, validationSetSize, kFoldIndex)
+        trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, validationSetSize, kFoldIndex)
         
         # Building the URM
         trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
