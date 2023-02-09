@@ -20,7 +20,6 @@ end
 
 function printInfo(urm)
     numberOfUsers, numberOfMovies = size(urm)
-    println("Loaded $numberOfUsers users and $numberOfMovies movies")
     println("URM shape is ($numberOfUsers, $numberOfMovies)")
 end
 

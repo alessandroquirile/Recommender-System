@@ -16,13 +16,13 @@ Loads data from specified dataset
 function loadDataFull(dataset)
     donwloadDataset(dataset)
 
-    println("# Loading $dataset dataset...")
+    println("Loading $dataset dataset...")
     linksDataFrame = DataFrame(CSV.File(dataset * "/links.csv"))
     moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
     ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
     tagsDataFrame = DataFrame(CSV.File(dataset * "/tags.csv"))
 
-    println("Dataset loaded\n")
+    println("✓ Dataset loaded\n")
     return linksDataFrame, moviesDataFrame, ratingsDataFrame, tagsDataFrame
 end
 
@@ -40,11 +40,11 @@ Loads data from specified dataset
 function loadDataSlim(dataset)
     donwloadDataset(dataset)
 
-    println("# Loading $dataset dataset...")
+    println("Loading $dataset dataset...")
     moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
     ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
 
-    println("Dataset loaded\n")
+    println("✓ Dataset loaded\n")
     return moviesDataFrame, ratingsDataFrame
 end
 
