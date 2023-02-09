@@ -61,5 +61,10 @@ function normalizingFactor(trainingURM, knnForItem, userRatings, metric=newMetri
         similarity = metric(userRatings, neighborRatings)
         sum += similarity
     end
-    return 1.0 / sum
+
+    if (sum == 0.0)
+        return missing
+    else
+        return 1.0 / sum
+    end
 end
