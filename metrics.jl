@@ -89,3 +89,24 @@ function meanAbsoluteError(target, prediction)
     absoluteDifference = broadcast(abs, difference)
     return mean(absoluteDifference)
 end
+
+
+function pearsonCorrelation(x, y)
+    x, y = commonRatings(x, y)
+    return cor(x, y)
+end
+
+"""
+Returns a (shorter) copy of x and y containing only the values where both x and y are non missing
+
+# Arguments
+- `x`: first array
+- `y`: second array
+
+# Returns
+- `x[valid], y[valid]`: containing non missing values
+"""
+function commonRatings(x, y)
+    local nonMissingMask = .!ismissing.(x) .& .!ismissing.(y)  # not missing values
+    return x[nonMissingMask], y[nonMissingMask]
+end
