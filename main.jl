@@ -21,10 +21,10 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 similarityMetric = newMetric
 aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
-knnMin = 2
-knnMax = 200
-knnStep = 50
-numberOfFolds = 1
+knnMin = 1
+knnMax = 2
+knnStep = 1
+numberOfFolds = 3
 
 println("Training hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
@@ -35,57 +35,67 @@ println(" # Neighborhood size: [$knnMin:$knnMax]")
 println(" # Neighborhood step: $knnStep")
 println("")
 
-validationErrors = []
+validationErrorsMean = []
+validationErrorsStdDev = []
 
 for k in knnMin:knnStep:knnMax # foreach hyperparameter
     println("- Running for neighborhood size k=$k")
-    errorsSum = 0.0
+    kFoldErrors = []
     for kFoldIndex = 0:numberOfFolds-1
 
         println("\t- Iteration $(kFoldIndex + 1)/$numberOfFolds")
 
         # Training and validation set splitting
-        validationSetSize = 0.10
+        validationSetSize = 0.005
         trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, validationSetSize, kFoldIndex)
         
         # Building the URM
         trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
         validationURM = buildURM(validationDataFrame, numberOfUsers, numberOfMovies)
+        urmDensity = getUrmDensityPercentage(trainingURM, trainingDataFrame)
+
+        println("\t\t- URM density: $urmDensity%")
 
         # Compute validation error
         foldError = computeModelError(trainingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
         println("\t\t- Validation error: $foldError")
-        errorsSum +=  foldError
+
+        push!(kFoldErrors, foldError)
 
         GC.gc(true) # Explicit call to the garbage collector to make sure no memory is leaked
     end
 
     # Compute validation error as the average of validation errors on each folds
-    avgValError = errorsSum / numberOfFolds
+    avgValError = mean(kFoldErrors)
+    stdDevError = std(kFoldErrors)
 
     # Store the validation error we just computed in validationErrors
-    push!(validationErrors, (k, avgValError))
+    push!(validationErrorsMean, (k, avgValError))
+    push!(validationErrorsStdDev, (k, stdDevError))
 end
 
 println("✓ Trained")
 
-plotValidationHistory(validationErrors)
+plotValidationHistory(validationErrorsMean, "Validation error mean")
+println("Press a key to continue...")
+readline()
+plotValidationHistory(validationErrorsStdDev, "Validation error std dev")
 
 # Performance evaluation
-sort!(validationErrors, by = x -> x[2])
-bestNeighborhoodSize = validationErrors[1][1]
+sort!(validationErrorsMean, by = x -> x[2])
+bestNeighborhoodSize = validationErrorsMean[1][1]
 println("\nModel selection...")
 println(" ✓ Neighborhood size k = $bestNeighborhoodSize")
-print("")
 
-println("Evaluating performance on test set...")
+println("\nEvaluating performance on test set...")
 
 # Building the URM
 trainingURM = buildURM(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies)
 
 # Printing info
 printInfo(trainingURM)
-printDensity(trainingURM, trainingAndValidationDataFrame)
+urmDensity = getUrmDensityPercentage(trainingURM, trainingAndValidationDataFrame)
+println(" # URM density is $urmDensity%")
 
 # Compute model MAE on the Test Set
 mae = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric, errorFunction)

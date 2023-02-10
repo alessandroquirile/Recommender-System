@@ -59,10 +59,10 @@ function printStatistics()
 end
 
 # Plot validation errors
-function plotValidationHistory(validationErrors)
+function plotValidationHistory(validationErrors, yLabel)
     xAxis = [x[1] for x in validationErrors]
     yAxis = [x[2] for x in validationErrors]
     plot(xAxis, yAxis, title="Validation errors (MAE)", show=true)
     xlabel!("kNN size")
-    ylabel!("Validation error")
+    ylabel!(yLabel)
 end

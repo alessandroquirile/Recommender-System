@@ -20,17 +20,21 @@ end
 
 function printInfo(urm)
     numberOfUsers, numberOfMovies = size(urm)
-    println("URM shape is ($numberOfUsers, $numberOfMovies)")
+    println(" # URM shape is ($numberOfUsers, $numberOfMovies)")
 end
 
-
-function printDensity(urm, ratingsDataFrame)
+function getUrmDensity(urm, ratingsDataFrame)
     numberOfUsers, numberOfMovies = size(urm)
     numberOfRatings = size(ratingsDataFrame, 1)
     density = numberOfRatings / (numberOfMovies * numberOfUsers)
-    println("Found $numberOfRatings ratings")
-    println("URM density is $(round(density*100, digits=3))%")
-    println("\n")
+
+    return density
+end
+
+function getUrmDensityPercentage(urm, ratingsDataFrame)
+    density = getUrmDensity(urm, ratingsDataFrame)
+    percentage = density*100
+    return round(percentage, digits=3)
 end
 
 
