@@ -14,6 +14,7 @@ numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Training and test set splitting
 testSetSize = 0.10
+validationSetSize = 0.10
 trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, testSetSize, 0)
 testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
@@ -28,6 +29,8 @@ numberOfFolds = 3
 
 println("Training hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
+println(" # Total data is split into $((1-testSetSize)*100)% training and $(testSetSize*100)% test")
+println(" # Validation set is $(validationSetSize*100)% of training data")
 println(" # Similarity metric: $similarityMetric")
 println(" # Aggregation method: $aggregationMethod")
 println(" # Error function: $errorFunction")
@@ -46,7 +49,6 @@ for k in knnMin:knnStep:knnMax # foreach hyperparameter
         println("\t- Iteration $(kFoldIndex + 1)/$numberOfFolds")
 
         # Training and validation set splitting
-        validationSetSize = 0.005
         trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, validationSetSize, kFoldIndex)
         
         # Building the URM
