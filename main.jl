@@ -15,7 +15,7 @@ numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 # Training and test set splitting
 testSetSize = 0.10
 validationSetSize = 0.10
-trainingAndValidationDataFrame, testDataFrame = kFoldSplit(ratingsDataFrame, testSetSize, 0)
+trainingDataFrame, testDataFrame = datasetSplit(ratingsDataFrame, testSetSize, 0)
 testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
@@ -49,17 +49,17 @@ for k in knnMin:knnStep:knnMax # foreach hyperparameter
         println("\t- Iteration $(kFoldIndex + 1)/$numberOfFolds")
 
         # Training and validation set splitting
-        trainingDataFrame, validationDataFrame = kFoldSplit(trainingAndValidationDataFrame, validationSetSize, kFoldIndex)
+        modelBuildingDataFrame, validationDataFrame = datasetSplit(trainingDataFrame, validationSetSize, kFoldIndex)
         
         # Building the URM
-        trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
+        modelBuildingURM = buildURM(modelBuildingDataFrame, numberOfUsers, numberOfMovies)
         validationURM = buildURM(validationDataFrame, numberOfUsers, numberOfMovies)
-        urmDensity = getUrmDensityPercentage(trainingURM, trainingDataFrame)
+        urmDensity = getDensityPercentage(modelBuildingURM, modelBuildingDataFrame)
 
         println("\t\t- URM density: $urmDensity%")
 
         # Compute validation error
-        foldError = computeModelError(trainingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
+        foldError = computeModelError(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
         println("\t\t- Validation error: $foldError")
 
         push!(kFoldErrors, foldError)
@@ -92,11 +92,11 @@ println(" ✓ Neighborhood size k = $bestNeighborhoodSize")
 println("\nEvaluating performance on test set...")
 
 # Building the URM
-trainingURM = buildURM(trainingAndValidationDataFrame, numberOfUsers, numberOfMovies)
+trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
 
 # Printing info
 printInfo(trainingURM)
-urmDensity = getUrmDensityPercentage(trainingURM, trainingAndValidationDataFrame)
+urmDensity = getDensityPercentage(trainingURM, trainingDataFrame)
 println(" # URM density is $urmDensity%")
 
 # Compute model MAE on the Test Set

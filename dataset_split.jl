@@ -1,16 +1,16 @@
-function kFoldSplit(ratingsDataFrame, testSetSize, kFoldIndex)
+function datasetSplit(ratingsDataFrame, foldSize, foldIndex)
     numberOfRatings = size(ratingsDataFrame, 1)
-    numberOfTestSetRatings = floor(Int, numberOfRatings * testSetSize)
+    numberOfTestSetRatings = floor(Int, numberOfRatings * foldSize)
 
-    testSetStartIndex = kFoldIndex * numberOfTestSetRatings + 1 # +1 because Julia's indices start from 1
-    testSetEndIndex = testSetStartIndex + numberOfTestSetRatings
+    testSetStartIndex = foldIndex * numberOfTestSetRatings + 1 # +1 because Julia's indices start from 1
+    testSetEndIndex = testSetStartIndex + numberOfTestSetRatings - 1 # -1 because Julia intervals are inclusive
 
     indices = range(1, numberOfRatings)
-    testSetindices = indices[testSetStartIndex:testSetEndIndex]
-    trainingSetindices = filter(x -> x ∉ testSetindices, indices)
+    foldIndices = indices[testSetStartIndex:testSetEndIndex]
+    trainingSetIndices = filter(x -> x ∉ foldIndices, indices)
 
-    testSetDataFrame = ratingsDataFrame[ testSetindices, :]
-    trainingSetDataFrame = ratingsDataFrame[ trainingSetindices, :]
+    foldDataFrame = ratingsDataFrame[ foldIndices, :]
+    trainingSetDataFrame = ratingsDataFrame[ trainingSetIndices, :]
 
-    return trainingSetDataFrame, testSetDataFrame
+    return trainingSetDataFrame, foldDataFrame
 end

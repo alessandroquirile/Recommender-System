@@ -13,7 +13,7 @@ Loads data from specified dataset
 - `ratingsDataFrame::DataFrame`: ratings dataframe
 """
 function loadData(dataset)
-    donwloadDataset(dataset)
+    downloadDataset(dataset)
 
     println("Loading $dataset dataset...")
     moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
@@ -24,7 +24,7 @@ function loadData(dataset)
 end
 
 
-function donwloadDataset(dataset)
+function downloadDataset(dataset)
     dataset_zip = dataset * ".zip"
 
     if !isfile(dataset_zip)

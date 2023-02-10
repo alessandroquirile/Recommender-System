@@ -2,7 +2,9 @@ function allocateMatrix(rows, columns)
     return Matrix{Union{Missing, Float32}}(missing, rows, columns)
 end
 
-
+"""
+Converts a item index (as the column number in the URM) to its movie ID in the MovieLens database
+"""
 function getMovieIndexById(movieId)
     for i=1:numberOfMovies
         if moviesDataFrame[i,1] == movieId
@@ -33,10 +35,11 @@ end
 
 function getUserRatingByMovieId(userRatings, movieId)
     ratingColumn = 3
-    return userRatings[userRatings.movieId .== movieId, ratingColumn]
-end
+    ratingSingleton = userRatings[userRatings.movieId .== movieId, ratingColumn]
 
-
-function isEmpty(rating)
-    return length(rating) == 0
+    if (isempty(ratingSingleton))
+        return missing
+    else
+        return ratingSingleton[1]
+    end
 end

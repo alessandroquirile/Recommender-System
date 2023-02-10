@@ -28,13 +28,11 @@ Computes the Jaccard index based on provided inputs
 # Returns
 - `jaccard`: Jaccard index
 """
-function jaccard(x, y)
-    d = squaredDifference(x, y)
-    numberOfNonMissingDistances = length(collect(skipmissing(d)))
+function jaccard(x, y, lengthOfNonMissingSquaredDifferences)
     numberOfNonMissingValuesInX = length(collect(skipmissing(x)))
     numberOfNonMissingValuesInY = length(collect(skipmissing(y)))
 
-    return numberOfNonMissingDistances / (numberOfNonMissingValuesInX + numberOfNonMissingValuesInY - numberOfNonMissingDistances)
+    return lengthOfNonMissingSquaredDifferences / (numberOfNonMissingValuesInX + numberOfNonMissingValuesInY - lengthOfNonMissingSquaredDifferences)
 end
 
 """
@@ -48,7 +46,15 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `newMetric`: a new similarity metric based on Jaccard and MSD
 """
 function newMetric(x, y)
-    return jaccard(x, y) * (1 - meanSquaredDifference(x, y))
+    squaredDifferences = squaredDifference(x, y)
+    nonMissingSquaredDifferences = collect(skipmissing(squaredDifferences))
+    lengthOfNonMissingSquaredDifferences = length(nonMissingSquaredDifferences)
+
+    if (lengthOfNonMissingSquaredDifferences == 0)
+        return missing
+    else
+        return jaccard(x, y, lengthOfNonMissingSquaredDifferences) * (1 - mean(nonMissingSquaredDifferences))
+    end
 end
 
 """
