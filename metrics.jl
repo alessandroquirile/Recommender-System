@@ -1,5 +1,6 @@
 """
 Computes the Mean Squared Difference (MSD) based on provided inputs
+`x` and `y` must have the same size
 
 # Arguments
 - `x`: first user's ratings
@@ -13,11 +14,12 @@ Computes the Mean Squared Difference (MSD) based on provided inputs
 - High `msd` values implies high differences between `x` and `y`
 """
 function meanSquaredDifference(x, y)
-    return mean(squaredDifference(x, y))
+    return mean(skipmissing(squaredDifference(x, y)))
 end
 
 """
 Computes the Jaccard index based on provided inputs
+`x` and `y` must have the same size
 
 # Arguments
 - `x`: first user's ratings
@@ -27,24 +29,12 @@ Computes the Jaccard index based on provided inputs
 - `jaccard`: Jaccard index
 """
 function jaccard(x, y)
-    local intersection = Base.intersect(x, y)
-    local union = Base.union(x, y)
-    return length(intersection) / length(union)
-end
+    d = squaredDifference(x, y)
+    numberOfNonMissingDistances = length(collect(skipmissing(d)))
+    numberOfNonMissingValuesInX = length(collect(skipmissing(x)))
+    numberOfNonMissingValuesInY = length(collect(skipmissing(y)))
 
-"""
-Validate input arrays
-
-# Arguments
-- `x`: first array
-- `y`: second array
-
-# Returns
-- `x[valid], y[valid]`: containing non missing values
-"""
-function validateArrays(x, y)
-    local valid = .!ismissing.(x) .& .!ismissing.(y)  # not missing values
-    return x[valid], y[valid]
+    return numberOfNonMissingDistances / (numberOfNonMissingValuesInX + numberOfNonMissingValuesInY - numberOfNonMissingDistances)
 end
 
 """
@@ -58,7 +48,6 @@ Computes a new similarity metric based on Jaccard and MSD indeces
 - `newMetric`: a new similarity metric based on Jaccard and MSD
 """
 function newMetric(x, y)
-    x, y = validateArrays(x, y)
     return jaccard(x, y) * (1 - meanSquaredDifference(x, y))
 end
 
