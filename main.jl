@@ -4,7 +4,7 @@ using Base.Threads
 include("my_dependencies.jl")
 
 # Data injection
-moviesDataFrame, ratingsDataFrame = loadDataSlim("ml-latest-small")
+moviesDataFrame, ratingsDataFrame = loadData("ml-latest-small")
 
 numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userId" values in ratingsDataFrame
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
@@ -23,8 +23,8 @@ similarityMetric = newMetric
 aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
-knnMax = 2
-knnStep = 1
+knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
+knnStep = 5 # based on the maximum size in paper, scaled according to dataset size
 numberOfFolds = 3
 
 println("Training hyperparameters...")
