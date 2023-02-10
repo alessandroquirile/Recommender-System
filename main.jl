@@ -20,14 +20,14 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = weightedSumAggregation
+aggregationMethod = adjustedWeightedSumAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
 knnStep = 5 # based on the maximum size in paper, scaled according to dataset size
 numberOfFolds = 3
 
-println("Training hyperparameters...")
+println("Training's hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
 println(" # Total data is split into $((1-testSetSize)*100)% training and $(testSetSize*100)% test")
 println(" # Validation set is $(validationSetSize*100)% of training data")
