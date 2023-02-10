@@ -53,7 +53,9 @@ function newMetric(x, y)
     if (lengthOfNonMissingSquaredDifferences == 0)
         return missing
     else
-        return jaccard(x, y, lengthOfNonMissingSquaredDifferences) * (1 - mean(nonMissingSquaredDifferences))
+        jaccardValue = jaccard(x, y, lengthOfNonMissingSquaredDifferences) 
+        msd = mean(nonMissingSquaredDifferences)
+        return jaccardValue* (1 - msd)
     end
 end
 
