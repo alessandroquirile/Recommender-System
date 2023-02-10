@@ -20,7 +20,7 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = averageAggregation
+aggregationMethod = weightedSumAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
@@ -87,7 +87,7 @@ plotValidationHistory(validationErrorsStdDev, "Validation error std dev")
 sort!(validationErrorsMean, by = x -> x[2])
 bestNeighborhoodSize = validationErrorsMean[1][1]
 println("\nModel selection...")
-println(" ✓ Neighborhood size k = $bestNeighborhoodSize")
+println(" ✓ Best neighborhood size k = $bestNeighborhoodSize")
 
 println("\nEvaluating performance on test set...")
 

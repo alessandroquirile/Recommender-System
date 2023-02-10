@@ -59,10 +59,19 @@ function printStatistics()
 end
 
 # Plot validation errors
-function plotValidationHistory(validationErrors, yLabel)
+function plotValidationHistory(validationErrors, title)
     xAxis = [x[1] for x in validationErrors]
     yAxis = [x[2] for x in validationErrors]
-    plot(xAxis, yAxis, title="Validation errors (MAE)", show=true)
+
+    yMin = round(minimum(yAxis), digits=3)
+    yMax = round(maximum(yAxis), digits=3)
+    yStep = round((yMax - yMin) / 16, digits=3)
+    
+    yTicks = yMin:yStep:yMax
+
+    plot(xAxis, yAxis, show=true, title=title, xticks=xAxis, yticks=yTicks, xtickfontsize=5, ytickfontsize=5, label="")
     xlabel!("kNN size")
-    ylabel!(yLabel)
+    ylabel!(title)
+
+
 end
