@@ -1,17 +1,17 @@
-function averageAggregation(urm, userRatings, itemId, k, metric=newMetric)
-    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemId, metric)  # G_u,i
+function averageAggregation(urm, userRatings, itemIndex, k, metric=newMetric)
+    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemIndex, metric)  # G_u,i
 
     if isempty(knnForItem)
         return missing
     end
 
-    neighborsRatings = urm[knnForItem, itemId]  # r_n,i
+    neighborsRatings = urm[knnForItem, itemIndex]  # r_n,i
     return mean(neighborsRatings)
 end
 
 
-function weightedSumAggregation(urm, userRatings, itemId, k, metric=newMetric)
-    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemId, metric)  # G_u,i
+function weightedSumAggregation(urm, userRatings, itemIndex, k, metric=newMetric)
+    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemIndex, metric)  # G_u,i
 
     if isempty(knnForItem)
         return missing
@@ -22,13 +22,13 @@ function weightedSumAggregation(urm, userRatings, itemId, k, metric=newMetric)
     
     for neighborId in eachindex(knnForItem)
         neighborRatings = urm[knnForItem[neighborId], :]
-        neighborRating = neighborRatings[itemId]  # r_n,i
+        neighborRating = neighborRatings[itemIndex]  # r_n,i
 
         similarity = metric(userRatings, neighborRatings)
         similarities_sum = similarities_sum + similarity
         sum += similarity * neighborRating
     end
-    
+
     if similarities_sum == 0
         return missing
     end
@@ -38,8 +38,8 @@ function weightedSumAggregation(urm, userRatings, itemId, k, metric=newMetric)
 end
 
 
-function adjustedWeightedSumAggregation(urm, userRatings, itemId, k, metric=newMetric)
-    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemId, metric)  # G_u,i
+function adjustedWeightedSumAggregation(urm, userRatings, itemIndex, k, metric=newMetric)
+    knnForItem = knnWhichRatedItem(urm, userRatings, k, itemIndex, metric)  # G_u,i
 
     if isempty(knnForItem)
         return missing
@@ -50,7 +50,7 @@ function adjustedWeightedSumAggregation(urm, userRatings, itemId, k, metric=newM
 
     for neighborId in eachindex(knnForItem)
         neighborRatings = urm[knnForItem[neighborId], :]
-        neighborRating = neighborRatings[itemId]  # r_n,i
+        neighborRating = neighborRatings[itemIndex]  # r_n,i
         neighborAvgRating = mean(collect(skipmissing(neighborRatings)))
 
         similarity = metric(userRatings, neighborRatings)
