@@ -1,9 +1,9 @@
-function computeModelError(trainingURM, targetDataFrame, targetURM, aggregationMethod, k, metric, errorFunction)
+function computeModelError(trainingURM, targetDataFrame, targetURM, aggregationMethod, k, metric)
     testSetItemCount = size(targetDataFrame, 1)
 
     # Extract and normalize target ratings
     targets = targetDataFrame[:, :rating]
-    normalize!(targets, getRatingRange())
+    targets = normalize(targets, getRatingRange())
 
     # Allocate predictions vector
     predictions = Vector{Union{Missing, Float64}}(undef, testSetItemCount)
@@ -41,8 +41,54 @@ function computeModelError(trainingURM, targetDataFrame, targetURM, aggregationM
     println("") # newline after progress report
     printTimeReport(totalTime, testSetItemCount)
     
-    error = errorFunction(targets, predictions)
-    return error
+    return targets, predictions
+end
+
+
+function computePrecisionAndRecall(targets, predictions)
+    theta = 0.75 # Every vote >= 0.75 is considered positive, else is considered negative
+
+    TP = 0
+    FP = 0
+    FN = 0
+    TN = 0
+
+    for i = eachindex(targets)
+        t = targets[i]
+        y = predictions[i]
+        if (ismissing(predictions[i]))
+            continue
+        end
+
+        if t >= theta # if target is positive
+            if y >= theta # if prediciton is positive
+                TP = TP + 1
+            else #prediction is negative
+                FN = FN + 1
+            end
+        else # target is negative
+            if y >= theta # if prediciton is positive
+                FP = FP + 1
+            else #prediction is negative
+                TN = TN + 1
+            end
+        end
+    end
+
+    precision = (TP)/(TP+FP)
+    recall = (TP)/(TP+FN)
+
+    return precision, recall
+end
+
+function computeNumberOfPerfectPredictions(targets, predictions)
+    counter = 0
+    for i=eachindex(targets)
+        if !ismissing(predictions[i]) && abs(targets[i] - predictions[i]) < 0.125
+            counter = counter + 1
+        end
+    end
+    return counter
 end
 
 function printErrorProgress(counter, testSetItemCount)

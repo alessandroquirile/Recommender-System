@@ -11,7 +11,7 @@ numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userI
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Print data set statistics
-printStatistics()
+#### printStatistics()
 
 # Training and test set splitting
 testSetSize = 0.10
@@ -27,6 +27,7 @@ knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
 knnStep = 5 # based on the maximum size in paper, scaled according to dataset size
 numberOfFolds = 3
+
 
 println("Training's hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
@@ -60,7 +61,8 @@ for k in knnMin:knnStep:knnMax # foreach hyperparameter
         println("\t\t- URM density: $urmDensity%")
 
         # Compute validation error
-        foldError = computeModelError(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric, errorFunction)
+        targets, predictions = computeModelError(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric)
+        foldError = errorFunction(targets, predictions)
         println("\t\t- Validation error: $foldError")
 
         push!(kFoldErrors, foldError)
@@ -103,5 +105,15 @@ urmDensity = getDensityPercentage(trainingURM, trainingDataFrame)
 println(" # URM density is $urmDensity%")
 
 # Compute model MAE on the Test Set
-mae = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric, errorFunction)
+targets, predictions = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric)
+mae = errorFunction(targets, predictions)
+precision, recall = computePrecisionAndRecall(targets, predictions)
+fMeasure = (2 * precision * recall) / (precision + recall)
+perfectPredictions = computeNumberOfPerfectPredictions(targets, predictions)
+
+# Print Test Set results
 println("MAE on test set is $mae")
+println("Precision on test set is $precision")
+println("Recall on test set is $recall")
+println("F-Measure is $fMeasure")
+println("Perfect predictions: $perfectPredictions/$(length(targets))")
