@@ -109,11 +109,12 @@ function plotValidationHistory(validationErrors, title)
     yMax = round(maximum(yAxis), digits=3)
     yStep = round((yMax - yMin) / 16, digits=3)
     
+    if (yStep == 0)
+        yStep = 0.001
+    end
     yTicks = yMin:yStep:yMax
 
     plot(xAxis, yAxis, show=true, title=title, xticks=xAxis, yticks=yTicks, xtickfontsize=5, ytickfontsize=5, label="")
     xlabel!("kNN size")
     ylabel!(title)
-
-
 end
