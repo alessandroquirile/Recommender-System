@@ -1,4 +1,4 @@
-function computeModelError(trainingURM, targetDataFrame, targetURM, aggregationMethod, k, metric)
+function computePredictions(trainingURM, targetDataFrame, targetURM, aggregationMethod, k, metric)
     testSetItemCount = size(targetDataFrame, 1)
 
     # Extract and normalize target ratings

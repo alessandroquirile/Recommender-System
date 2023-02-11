@@ -61,7 +61,7 @@ for k in knnMin:knnStep:knnMax # foreach hyperparameter
         println("\t\t- URM density: $urmDensity%")
 
         # Compute validation error
-        targets, predictions = computeModelError(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric)
+        targets, predictions = computePredictions(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric)
         foldError = errorFunction(targets, predictions)
         println("\t\t- Validation error: $foldError")
 
@@ -105,7 +105,7 @@ urmDensity = getDensityPercentage(trainingURM, trainingDataFrame)
 println(" # URM density is $urmDensity%")
 
 # Compute model MAE on the Test Set
-targets, predictions = computeModelError(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric)
+targets, predictions = computePredictions(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric)
 mae = errorFunction(targets, predictions)
 precision, recall = computePrecisionAndRecall(targets, predictions)
 fMeasure = (2 * precision * recall) / (precision + recall)
