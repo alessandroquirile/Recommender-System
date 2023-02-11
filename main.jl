@@ -107,13 +107,13 @@ println(" # URM density is $urmDensity%")
 # Compute model MAE on the Test Set
 targets, predictions = computePredictions(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric)
 mae = errorFunction(targets, predictions)
-precision, recall = computePrecisionAndRecall(targets, predictions)
-fMeasure = (2 * precision * recall) / (precision + recall)
+_precision, recall = computePrecisionAndRecall(targets, predictions)
+fMeasure = (2 * _precision * recall) / (_precision + recall)
 perfectPredictions = computeNumberOfPerfectPredictions(targets, predictions)
 
 # Print Test Set results
 println("MAE on test set is $mae")
-println("Precision on test set is $precision")
+println("Precision on test set is $_precision")
 println("Recall on test set is $recall")
 println("F-Measure is $fMeasure")
 println("Perfect predictions: $perfectPredictions/$(length(targets))")
