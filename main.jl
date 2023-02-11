@@ -21,7 +21,7 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = averageAggregation
+aggregationMethod = adjustedWeightedSumAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
