@@ -1,6 +1,7 @@
 using Statistics
 using Plots
 using Base.Threads
+using StatsBase
 include("my_dependencies.jl")
 
 # Data injection
@@ -10,7 +11,7 @@ numberOfUsers = length(unique(ratingsDataFrame[:, 1])) # Number of unique "userI
 numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Print data set statistics
-#printStatistics()
+printStatistics()
 
 # Training and test set splitting
 testSetSize = 0.10

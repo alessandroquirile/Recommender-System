@@ -1,24 +1,46 @@
-function getAverage(dataFrame::DataFrame, groupByCols, rounded::Bool=true)
-    dfGrouped = groupby(dataFrame, groupByCols)
+function getRatingAverages(dfGrouped::GroupedDataFrame, rounded::Bool=true)
     dfMean = combine(dfGrouped, :rating => x -> getMean(x, rounded))
-
     return dfMean
 end
 
+function getRatingModes(dfGrouped::GroupedDataFrame, rounded::Bool=true)
+    dfModes = combine(dfGrouped, :rating => x -> getMode(x, rounded))
+    return dfModes
+end
 
-function getStdDev(dataFrame::DataFrame, groupByCols, corrected::Bool, rounded::Bool=true)
-    dfGrouped = groupby(dataFrame, groupByCols)
+function getRatingMedians(dfGrouped::GroupedDataFrame, rounded::Bool=true)
+    dfMedians = combine(dfGrouped, :rating => x -> getMedian(x, rounded))
+    return dfMedians
+end
+    
+
+function getRatingStdDevs(dfGrouped::GroupedDataFrame, corrected::Bool, rounded::Bool=true)
     dfStdDev = combine(dfGrouped, :rating => x -> getStdDevOfNonMissingValues(x, corrected, rounded))
-
     return dfStdDev
 end
 
-function getMean(values,  rounded::Bool=true)
-    mean = mean(values)
+function getMean(values, rounded::Bool=true)
+    _mean = mean(values)
     if (rounded)
-        mean = round(mean, digits=1)
+        _mean = round(_mean, digits=1)
     end
-    return mean
+    return _mean
+end
+
+function getMode(values, rounded::Bool=true)
+    _mode = mode(values)
+    if (rounded)
+        _mode = round(_mode, digits=1)
+    end
+    return _mode
+end
+
+function getMedian(values,  rounded::Bool=true)
+    _median = median(values)
+    if (rounded)
+        _median = round(_median, digits=1)
+    end
+    return _median
 end
 
 function getStdDevOfNonMissingValues(values, corrected::Bool, rounded::Bool=true)
@@ -42,20 +64,40 @@ end
 
 function printStatistics()
     # Value of votes histogram
-    valueOfVotes = histogram(ratingsDataFrame.rating, title="Value of votes")
+    valueOfVotes = histogram(ratingsDataFrame.rating, title="Value of votes", label="", bar_width=0.4)
+
+    dfGrouped = groupby(ratingsDataFrame, :movieId)
 
     # Arithmetic average histogram
-    moviesRatingAverage = getAverage(ratingsDataFrame, :movieId)
-    arithmeticAverageHistogram = histogram(moviesRatingAverage.rating_function, title="Arithmetic average") # TODO: change x axis step size
+    moviesRatingAverages = getRatingAverages(dfGrouped)
+    arithmeticAverageHistogram = histogram(moviesRatingAverages.rating_function, title="Votes arithmetic average", label="")
+
+    # Mode histogram
+    #moviesRatingModes = getRatingModes(dfGrouped)
+    #modeHistogram = histogram(moviesRatingModes.rating_function, title="Votes mode", label="")
+
+    # Median histogram
+    #moviesRatingMedian = getRatingMedians(dfGrouped)
+    #medianHistogram = histogram(moviesRatingMedian.rating_function, title="Votes median", label="")
 
     # Standard deviation histogram
-    moviesRatingStdDev = getStdDev(ratingsDataFrame, :movieId, true)
-    stdDevHistogram = histogram(moviesRatingStdDev.rating_function, title="Standard deviation") # TODO: change x axis step size
+    moviesRatingStdDev = getRatingStdDevs(dfGrouped, true)
+    stdDevHistogram = histogram(moviesRatingStdDev.rating_function, title="Votes standard deviation", label="")
+
+    votesMode = mode(ratingsDataFrame.rating)
+    votesMedian = median(ratingsDataFrame.rating)
+    valueOfVotesSkewness = skewness(ratingsDataFrame.rating)
 
     # Plotting histograms
     showHistogram(valueOfVotes)
     showHistogram(arithmeticAverageHistogram)
+    #showHistogram(modeHistogram)
+    #showHistogram(medianHistogram)
     showHistogram(stdDevHistogram)
+
+    println(" # Value of votes mode is $(round(votesMode, digits=3))")
+    println(" # Value of votes median is $(round(votesMedian, digits=3))")
+    println(" # Value of votes skewness is $(round(valueOfVotesSkewness, digits=3))")
 end
 
 # Plot validation errors
