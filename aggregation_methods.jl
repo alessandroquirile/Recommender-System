@@ -5,8 +5,8 @@ function averageAggregation(urm, userRatings, itemId, k, metric=newMetric)
         return missing
     end
 
-    neighborsRating = urm[knnForItem, itemId]  # r_n,i
-    return mean(neighborsRating)
+    neighborsRatings = urm[knnForItem, itemId]  # r_n,i
+    return mean(neighborsRatings)
 end
 
 
@@ -18,15 +18,22 @@ function weightedSumAggregation(urm, userRatings, itemId, k, metric=newMetric)
     end
         
     sum = 0.0
+    similarities_sum = 0.0
+    
     for neighborId in eachindex(knnForItem)
         neighborRatings = urm[knnForItem[neighborId], :]
         neighborRating = neighborRatings[itemId]  # r_n,i
 
         similarity = metric(userRatings, neighborRatings)
+        similarities_sum = similarities_sum + similarity
         sum += similarity * neighborRating
     end
     
-    mi = normalizingFactor(urm, knnForItem, userRatings, metric)
+    if similarities_sum == 0
+        return missing
+    end
+    
+    mi = 1 / similarities_sum
     return sum * mi
 end
 
@@ -39,17 +46,24 @@ function adjustedWeightedSumAggregation(urm, userRatings, itemId, k, metric=newM
     end
 
     sum = 0.0
+    similarities_sum = 0.0
+
     for neighborId in eachindex(knnForItem)
         neighborRatings = urm[knnForItem[neighborId], :]
         neighborRating = neighborRatings[itemId]  # r_n,i
         neighborAvgRating = mean(collect(skipmissing(neighborRatings)))
 
         similarity = metric(userRatings, neighborRatings)
+        similarities_sum = similarities_sum + similarity
         sum += similarity * (neighborRating - neighborAvgRating)
     end
 
+    if similarities_sum == 0
+        return missing
+    end
+
     userAvgRating = mean(collect(skipmissing(userRatings)))
-    mi = normalizingFactor(urm, knnForItem, userRatings, metric)
+    mi = 1 / similarities_sum
     return userAvgRating + sum * mi
 end
 
