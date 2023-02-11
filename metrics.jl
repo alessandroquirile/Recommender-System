@@ -93,6 +93,11 @@ end
 
 function pearsonCorrelation(x, y)
     x, y = commonRatings(x, y)
+
+    if length(x) == 0
+        return missing
+    end
+    
     return cor(x, y)
 end
 
