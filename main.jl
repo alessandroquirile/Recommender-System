@@ -20,7 +20,7 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = adjustedWeightedSumAggregation
+aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
@@ -42,7 +42,7 @@ validationErrorsMean = []
 validationErrorsStdDev = []
 
 for k in knnMin:knnStep:knnMax # foreach hyperparameter
-    println("- Running for neighborhood size k=$k")
+    println("- Running for neighborhood size k = $k")
     kFoldErrors = []
     for kFoldIndex = 0:numberOfFolds-1
 
@@ -70,6 +70,8 @@ for k in knnMin:knnStep:knnMax # foreach hyperparameter
     # Compute validation error as the average of validation errors on each folds
     avgValError = mean(kFoldErrors)
     stdDevError = std(kFoldErrors)
+    println("\t# Avg validation error: $(round(avgValError, digits=3))")
+    println("\t# StdDev validation error: $(round(stdDevError, digits=3))")
 
     # Store the validation error we just computed in validationErrors
     push!(validationErrorsMean, (k, avgValError))
