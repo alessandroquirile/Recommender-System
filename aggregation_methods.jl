@@ -29,7 +29,7 @@ function weightedSumAggregation(urm, userRatings, itemIndex, k, metric=newMetric
         sum += similarity * neighborRating
     end
 
-    if similarities_sum == 0
+    if ismissing(similarities_sum) || similarities_sum == 0
         return missing
     end
     
@@ -58,7 +58,7 @@ function adjustedWeightedSumAggregation(urm, userRatings, itemIndex, k, metric=n
         sum += similarity * (neighborRating - neighborAvgRating)
     end
 
-    if similarities_sum == 0
+    if ismissing(similarities_sum) || similarities_sum == 0
         return missing
     end
 
