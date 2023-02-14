@@ -20,7 +20,7 @@ trainingDataFrame, testDataFrame = datasetSplit(ratingsDataFrame, testSetSize, 0
 testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
-similarityMetric = newMetric
+similarityMetric = pearsonCorrelation
 aggregationMethod = adjustedWeightedSumAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
@@ -39,6 +39,7 @@ println(" # Error function: $errorFunction")
 println(" # Neighborhood size: [$knnMin:$knnMax]")
 println(" # Neighborhood step: $knnStep")
 println("")
+
 
 validationErrorsMean = []
 validationErrorsStdDev = []
@@ -95,6 +96,8 @@ println("\nModel selection...")
 println(" ✓ Best neighborhood size k = $bestNeighborhoodSize")
 
 println("\nEvaluating performance on test set...")
+
+
 
 # Building the URM
 trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
