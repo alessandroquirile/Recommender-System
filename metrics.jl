@@ -98,7 +98,13 @@ function pearsonCorrelation(x, y)
         return missing
     end
     
-    return cor(x, y)
+    correlation = cor(x, y)
+
+    if isnan(correlation)
+        return missing
+    end
+
+    return correlation
 end
 
 """
