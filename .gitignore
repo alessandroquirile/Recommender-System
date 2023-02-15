@@ -27,3 +27,4 @@ Manifest.toml
 *.zip
 *.csv
 ml-latest-small/*
+ml-1m/*
