@@ -16,13 +16,21 @@ function loadData(dataset)
     downloadDataset(dataset)
 
     println("Loading $dataset dataset...")
-    moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
-    ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
+
+    if isfile(dataset * "/movies.csv")
+        moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.csv"))
+        ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.csv"))
+    else
+        moviesHeader = Vector{String}("movieId", "imdbId", "tmdbId")
+        ratingsHeader = Vector{String}("userId", "movieId", "rating", "timestamp")
+
+        moviesDataFrame = DataFrame(CSV.File(dataset * "/movies.dat", delim = "::", header = moviesHeader))
+        ratingsDataFrame = DataFrame(CSV.File(dataset * "/ratings.dat", delim = "::", header = ratingsHeader))
+    end
 
     println("✓ Dataset loaded\n")
     return moviesDataFrame, ratingsDataFrame
 end
-
 
 function downloadDataset(dataset)
     dataset_zip = dataset * ".zip"
@@ -36,5 +44,5 @@ function downloadDataset(dataset)
 end
 
 function getRatingRange()
-    return 1:5
+    return 0.5:5
 end
