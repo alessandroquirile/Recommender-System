@@ -563,8 +563,8 @@ Evaluating performance on test set...
  # URM density is 1.527%
                 - Computing prediction 10083/10083 (100.0%)
                 - Computed 10083 predictions in 1568.788s: 0.156 s/prediction
-MAE on test set is 0.1944343500898052
-Precision on test set is 0.7099953073674331
-Recall on test set is 0.3051633723275514
-F-Measure is 0.4268585131894484
+MAE on test set is 0.19443435010725013
+Precision on test set is 0.7351716961498439
+Recall on test set is 0.7074432576769025
+F-Measure is 0.7210409933662187
 Perfect predictions: 3935/10083

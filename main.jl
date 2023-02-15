@@ -20,8 +20,8 @@ trainingDataFrame, testDataFrame = datasetSplit(ratingsDataFrame, testSetSize, 0
 testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
-similarityMetric = pearsonCorrelation
-aggregationMethod = adjustedWeightedSumAggregation
+similarityMetric = newMetric
+aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size

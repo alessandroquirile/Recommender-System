@@ -30,7 +30,7 @@ function computePredictions(trainingURM, targetDataFrame, targetURM, aggregation
         timeBefore = time() # time, in seconds, before the prediction started
         predictions[i] = aggregationMethod(trainingURM, user, itemIndex, k, metric) # compute prediction
 
-        # We now calculate how long the prediciton took and add it to the totalTime atomic variable
+        # We now calculate how long the prediction took and add it to the totalTime atomic variable
         elapsedTime = time() - timeBefore
         Threads.atomic_add!(totalTime, elapsedTime) 
 

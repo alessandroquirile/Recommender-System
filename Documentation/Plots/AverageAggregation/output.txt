@@ -567,8 +567,8 @@ Evaluating performance on test set...
                 - Computing prediction 10083/10083 (100.0%)
                 - Computed 10083 predictions in 1185.61s: 0.118 s/prediction
 
-MAE on test set is 0.19536912953447533
-Precision on test set is 0.6970212765957446
-Recall on test set is 0.33265637692932576
-F-Measure is 0.4503711850426175
-Perfect predictions: 3711/10083
+MAE on test set is 0.195915935114304
+Precision on test set is 0.7311772758384668
+Recall on test set is 0.7131174899866488
+F-Measure is 0.7220344711051031
+Perfect predictions: 3795/10083

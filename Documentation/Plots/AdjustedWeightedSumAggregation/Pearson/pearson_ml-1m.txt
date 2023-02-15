@@ -1,0 +1,12 @@
+Loading ml-1m dataset...
+✓ Dataset loaded
+
+ # URM shape is (6040, 3883)
+ # URM density is 3.838%
+                - Computing prediction 100020/100020 (100.0%)
+                - Computed 100020 predictions in 41527.968s: 0.415 s/prediction
+MAE on test set is 0.16056380110056256
+Precision on test set is 0.9335858119342324
+Recall on test set is 0.6044675697497084
+F-Measure is 0.7338137331421415
+Perfect predictions: 26957/100020
