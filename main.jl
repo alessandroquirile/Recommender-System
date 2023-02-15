@@ -21,13 +21,12 @@ testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = averageAggregation
+aggregationMethod = adjustedWeightedSumAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
 knnStep = 5 # based on the maximum size in paper, scaled according to dataset size
 numberOfFolds = 3
-
 
 println("Training's hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
@@ -96,7 +95,6 @@ println("\nModel selection...")
 println(" ✓ Best neighborhood size k = $bestNeighborhoodSize")
 
 println("\nEvaluating performance on test set...")
-
 
 
 # Building the URM
