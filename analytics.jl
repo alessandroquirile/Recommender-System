@@ -118,3 +118,12 @@ function plotHistory(validationErrors, title)
     xlabel!("kNN size")
     ylabel!(title)
 end
+
+
+function plotItemRatingsCount(ratingsDataFrame::DataFrame)
+    # Get the number of ratings for each item
+    itemRatings = combine(groupby(ratingsDataFrame, :movieId), nrow => :rating_count)
+    
+    h = histogram(itemRatings[!, :rating_count], xlabel="Number of items", ylabel="Number of ratings", bins=:sqrt)
+    showHistogram(h)
+end
