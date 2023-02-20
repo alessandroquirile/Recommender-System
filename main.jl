@@ -15,23 +15,19 @@ numberOfMovies = size(moviesDataFrame, 1) # Number of rows in moviesDataFrame
 
 # Training and test set splitting
 testSetSize = 0.10
-validationSetSize = 0.10
-trainingDataFrame, testDataFrame = datasetSplit(ratingsDataFrame, testSetSize, 0)
-testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
 
 # Hyperparameters
 similarityMetric = newMetric
-aggregationMethod = adjustedWeightedSumAggregation
+aggregationMethod = averageAggregation
 errorFunction = meanAbsoluteError
 knnMin = 1
 knnMax = 150 # based on the maximum size in paper, scaled according to dataset size
 knnStep = 5 # based on the maximum size in paper, scaled according to dataset size
-numberOfFolds = 3
+numberOfFolds = 5
 
 println("Training's hyperparameters...")
 println(" # Validation technique: $numberOfFolds-fold cross validation")
 println(" # Total data is split into $((1-testSetSize)*100)% training and $(testSetSize*100)% test")
-println(" # Validation set is $(validationSetSize*100)% of training data")
 println(" # Similarity metric: $similarityMetric")
 println(" # Aggregation method: $aggregationMethod")
 println(" # Error function: $errorFunction")
@@ -40,81 +36,92 @@ println(" # Neighborhood step: $knnStep")
 println("")
 
 
-validationErrorsMean = []
-validationErrorsStdDev = []
+testErrorsMean = []
+testErrorsStdDev = []
 
 for k in knnMin:knnStep:knnMax # foreach hyperparameter
     println("- Running for neighborhood size k = $k")
+
+    testSetItemCount = 0
     kFoldErrors = []
+    precisionSum = 0
+    recallSum = 0
+    fMeasureSum = 0
+    perfectPredictionsSum = 0
+
     for kFoldIndex = 0:numberOfFolds-1
 
         println("\t- Iteration $(kFoldIndex + 1)/$numberOfFolds")
 
-        # Training and validation set splitting
-        modelBuildingDataFrame, validationDataFrame = datasetSplit(trainingDataFrame, validationSetSize, kFoldIndex)
+        # Training and test set splitting
+        trainingDataFrame, testDataFrame = datasetSplit(ratingsDataFrame, testSetSize, kFoldIndex)
         
         # Building the URM
-        modelBuildingURM = buildURM(modelBuildingDataFrame, numberOfUsers, numberOfMovies)
-        validationURM = buildURM(validationDataFrame, numberOfUsers, numberOfMovies)
-        urmDensity = getDensityPercentage(modelBuildingURM, modelBuildingDataFrame)
+        trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
+        testURM = buildURM(testDataFrame, numberOfUsers, numberOfMovies)
+        urmDensity = getDensityPercentage(trainingURM, trainingDataFrame)
+        testSetItemCount = size(testDataFrame, 1)
 
         println("\t\t- URM density: $urmDensity%")
 
-        # Compute validation error
-        targets, predictions = computePredictions(modelBuildingURM, validationDataFrame, validationURM, aggregationMethod, k, similarityMetric)
-        foldError = errorFunction(targets, predictions)
-        println("\t\t- Validation error: $foldError")
+        # Compute targets
+        targets, predictions = computePredictions(trainingURM, testDataFrame, testURM, aggregationMethod, k, similarityMetric)
 
-        push!(kFoldErrors, foldError)
+        # Compute performance metrics on current fold
+        mae = errorFunction(targets, predictions)
+        _precision, recall = computePrecisionAndRecall(targets, predictions)
+        fMeasure = (2 * _precision * recall) / (_precision + recall)
+        perfectPredictions = computeNumberOfPerfectPredictions(targets, predictions)
+
+        precisionSum += _precision
+        recallSum += recall 
+        fMeasureSum += fMeasure
+        perfectPredictionsSum += perfectPredictions
+
+        println("\t\t- Test error: $mae")
+
+        push!(kFoldErrors, mae)
 
         GC.gc(true) # Explicit call to the garbage collector to make sure no memory is leaked
     end
 
-    # Compute validation error as the average of validation errors on each folds
+    # Compute test error as the average of test errors on each folds
     avgValError = mean(kFoldErrors)
     stdDevError = std(kFoldErrors)
-    println("\t# Avg validation error: $(round(avgValError, digits=3))")
-    println("\t# StdDev validation error: $(round(stdDevError, digits=3))")
+    precisionMean = precisionSum / numberOfFolds
+    recallMean = recallSum / numberOfFolds
+    fMeasureMean = fMeasureSum / numberOfFolds
+    perfectPredictionsMean = perfectPredictionsSum / numberOfFolds
+    perfectPredictionsPercentage = perfectPredictionsMean/testSetItemCount * 100
 
-    # Store the validation error we just computed in validationErrors
-    push!(validationErrorsMean, (k, avgValError))
-    push!(validationErrorsStdDev, (k, stdDevError))
+    println("\t# Avg test error: $(round(avgValError, digits=3))")
+    println("\t# StdDev test error: $(round(stdDevError, digits=3))")
+    println("\t# Precision mean: $(round(precisionMean, digits=3))")
+    println("\t# Recall mean: $(round(recallMean, digits=3))")
+    println("\t# f-measure mean: $(round(fMeasureMean, digits=3))")
+    println("\t# Perfect predictions mean: $(round(perfectPredictionsMean, digits=3))/$testSetItemCount ($(round(perfectPredictionsPercentage, digits=3))%)")
+    
+
+    # Store the test error we just computed in testErrors
+    push!(testErrorsMean, (k, avgValError))
+    push!(testErrorsStdDev, (k, stdDevError))
 end
 
-println("✓ Trained")
+println("✓ Operation completed")
 
-plotValidationHistory(validationErrorsMean, "Validation error mean")
+
+CSV.write("$aggregationMethod error mean.csv", Tables.table(testErrorsMean), writeheaders=false)
+CSV.write("$aggregationMethod error stddev.csv", Tables.table(testErrorsStdDev), writeheaders=false)
+
+
+plotHistory(testErrorsMean, "Test error mean")
 println("Press a key to continue...")
 readline()
-plotValidationHistory(validationErrorsStdDev, "Validation error std dev")
+plotHistory(testErrorsStdDev, "Test error std dev")
 
 # Performance evaluation
-sort!(validationErrorsMean, by = x -> x[2])
-bestNeighborhoodSize = validationErrorsMean[1][1]
+sort!(testErrorsMean, by = x -> x[2])
+bestNeighborhoodSize = testErrorsMean[1][1]
 println("\nModel selection...")
 println(" ✓ Best neighborhood size k = $bestNeighborhoodSize")
 
-println("\nEvaluating performance on test set...")
-
-
-# Building the URM
-trainingURM = buildURM(trainingDataFrame, numberOfUsers, numberOfMovies)
-
-# Printing info
-printInfo(trainingURM)
-urmDensity = getDensityPercentage(trainingURM, trainingDataFrame)
-println(" # URM density is $urmDensity%")
-
-# Compute model MAE on the Test Set
-targets, predictions = computePredictions(trainingURM, testDataFrame, testURM, aggregationMethod, bestNeighborhoodSize, similarityMetric)
-mae = errorFunction(targets, predictions)
-_precision, recall = computePrecisionAndRecall(targets, predictions)
-fMeasure = (2 * _precision * recall) / (_precision + recall)
-perfectPredictions = computeNumberOfPerfectPredictions(targets, predictions)
-
-# Print Test Set results
-println("MAE on test set is $mae")
-println("Precision on test set is $_precision")
-println("Recall on test set is $recall")
-println("F-Measure is $fMeasure")
-println("Perfect predictions: $perfectPredictions/$(length(targets))")

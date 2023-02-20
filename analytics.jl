@@ -101,7 +101,7 @@ function printStatistics()
 end
 
 # Plot validation errors
-function plotValidationHistory(validationErrors, title)
+function plotHistory(validationErrors, title)
     xAxis = [x[1] for x in validationErrors]
     yAxis = [x[2] for x in validationErrors]
 
