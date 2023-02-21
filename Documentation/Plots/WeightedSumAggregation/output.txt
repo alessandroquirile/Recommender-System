@@ -1,3 +1,4 @@
+#NOTE: this test has been performed on another computer, so prediction time is not comparable to the other tests
 Downloading ml-latest-small.zip
 Archive:  ml-latest-small.zip
    creating: ml-latest-small/

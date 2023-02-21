@@ -1,10 +1,9 @@
- Loading ml-latest-small dataset...
+Loading ml-latest-small dataset...
 ✓ Dataset loaded
 
 Training's hyperparameters...
- # Validation technique: 3-fold cross validation
+ # Validation technique: 5-fold cross validation
  # Total data is split into 90.0% training and 10.0% test
- # Validation set is 10.0% of training data
  # Similarity metric: pearsonCorrelation
  # Aggregation method: adjustedWeightedSumAggregation
  # Error function: meanAbsoluteError
@@ -12,559 +11,968 @@ Training's hyperparameters...
  # Neighborhood step: 5
 
 - Running for neighborhood size k = 1
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 570.123s: 0.063 s/prediction
-                - Validation error: 0.18129999973015856
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 592.828s: 0.065 s/prediction
-                - Validation error: 0.1989734482292458
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 595.923s: 0.066 s/prediction
-                - Validation error: 0.18787442282625655
-        # Avg validation error: 0.189
-        # StdDev validation error: 0.009
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 468.552s: 0.046 s/prediction
+                - Test error: 0.19171397649526234
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 454.863s: 0.045 s/prediction
+                - Test error: 0.20307756750506362
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 437.827s: 0.043 s/prediction
+                - Test error: 0.22775384167276863
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 428.249s: 0.042 s/prediction
+                - Test error: 0.1857861425517574
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 430.27s: 0.043 s/prediction
+                - Test error: 0.2213030834390505
+        # Avg test error: 0.206
+        # StdDev test error: 0.018
+        # Precision mean: 0.864
+        # Recall mean: 0.792
+        # f-measure mean: 0.826
+        # Perfect predictions mean: 61.0/10083 (0.605%)
 - Running for neighborhood size k = 6
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 610.633s: 0.067 s/prediction
-                - Validation error: 0.19099210788505525
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 581.578s: 0.064 s/prediction
-                - Validation error: 0.1978377583574842
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 631.484s: 0.07 s/prediction
-                - Validation error: 0.1858703817656976
-        # Avg validation error: 0.192
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 433.506s: 0.043 s/prediction
+                - Test error: 0.1908094430482758
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 439.764s: 0.044 s/prediction
+                - Test error: 0.18407665926096003
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 437.058s: 0.043 s/prediction
+                - Test error: 0.195646425693735
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 434.643s: 0.043 s/prediction
+                - Test error: 0.19299125711448653
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 432.155s: 0.043 s/prediction
+                - Test error: 0.19305551092831424
+        # Avg test error: 0.191
+        # StdDev test error: 0.004
+        # Precision mean: 0.861
+        # Recall mean: 0.782
+        # f-measure mean: 0.82
+        # Perfect predictions mean: 357.0/10083 (3.541%)
 - Running for neighborhood size k = 11
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 659.739s: 0.073 s/prediction
-                - Validation error: 0.1795686341325489
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 597.543s: 0.066 s/prediction
-                - Validation error: 0.1893799678876081
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 598.88s: 0.066 s/prediction
-                - Validation error: 0.17887436775608817
-        # Avg validation error: 0.183
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 438.024s: 0.043 s/prediction
+                - Test error: 0.1807267249003217
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 444.295s: 0.044 s/prediction
+                - Test error: 0.18302547238226666
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 444.807s: 0.044 s/prediction
+                - Test error: 0.18633025206424716
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 429.062s: 0.043 s/prediction
+                - Test error: 0.1860026551693152
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 433.819s: 0.043 s/prediction
+                - Test error: 0.1878928020717672
+        # Avg test error: 0.185
+        # StdDev test error: 0.003
+        # Precision mean: 0.858
+        # Recall mean: 0.782
+        # f-measure mean: 0.818
+        # Perfect predictions mean: 642.4/10083 (6.371%)
 - Running for neighborhood size k = 16
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 597.639s: 0.066 s/prediction
-                - Validation error: 0.17209350307604343
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 624.829s: 0.069 s/prediction
-                - Validation error: 0.183212829198511
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 619.573s: 0.068 s/prediction
-                - Validation error: 0.16952086972399438
-        # Avg validation error: 0.175
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 455.4s: 0.045 s/prediction
+                - Test error: 0.17555846854793009
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 450.534s: 0.045 s/prediction
+                - Test error: 0.17243431091437883
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 452.52s: 0.045 s/prediction
+                - Test error: 0.18102985107567998
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 451.988s: 0.045 s/prediction
+                - Test error: 0.17677751295653646
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 439.866s: 0.044 s/prediction
+                - Test error: 0.1837844150593025
+        # Avg test error: 0.178
+        # StdDev test error: 0.005
+        # Precision mean: 0.86
+        # Recall mean: 0.78
+        # f-measure mean: 0.818
+        # Perfect predictions mean: 963.8/10083 (9.559%)
 - Running for neighborhood size k = 21
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 605.549s: 0.067 s/prediction
-                - Validation error: 0.16711257111558983
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 589.052s: 0.065 s/prediction
-                - Validation error: 0.1781395394035231
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 612.516s: 0.067 s/prediction
-                - Validation error: 0.164761915146575
-        # Avg validation error: 0.17
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 452.099s: 0.045 s/prediction
+                - Test error: 0.17096315644228247
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 436.265s: 0.043 s/prediction
+                - Test error: 0.1674226898045634
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 454.77s: 0.045 s/prediction
+                - Test error: 0.17564530347476712
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 443.203s: 0.044 s/prediction
+                - Test error: 0.17206154706946727
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 449.541s: 0.045 s/prediction
+                - Test error: 0.18270554707109013
+        # Avg test error: 0.174
+        # StdDev test error: 0.006
+        # Precision mean: 0.861
+        # Recall mean: 0.778
+        # f-measure mean: 0.817
+        # Perfect predictions mean: 1263.2/10083 (12.528%)
 - Running for neighborhood size k = 26
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 599.773s: 0.066 s/prediction
-                - Validation error: 0.16418125049142868
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 625.052s: 0.069 s/prediction
-                - Validation error: 0.17315475839210603
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 625.132s: 0.069 s/prediction
-                - Validation error: 0.15968547075236686
-        # Avg validation error: 0.166
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 445.79s: 0.044 s/prediction
+                - Test error: 0.16702093812041538
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 429.069s: 0.043 s/prediction
+                - Test error: 0.16468709443299187
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 443.489s: 0.044 s/prediction
+                - Test error: 0.17255103191742055
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 466.841s: 0.046 s/prediction
+                - Test error: 0.16743450521046432
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 429.731s: 0.043 s/prediction
+                - Test error: 0.17605601260561216
+        # Avg test error: 0.17
+        # StdDev test error: 0.005
+        # Precision mean: 0.864
+        # Recall mean: 0.777
+        # f-measure mean: 0.818
+        # Perfect predictions mean: 1550.4/10083 (15.376%)
 - Running for neighborhood size k = 31
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 618.304s: 0.068 s/prediction
-                - Validation error: 0.16218272855576732
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 683.255s: 0.075 s/prediction
-                - Validation error: 0.17006788695009453
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 654.482s: 0.072 s/prediction
-                - Validation error: 0.15647102680724362
-        # Avg validation error: 0.163
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 449.562s: 0.045 s/prediction
+                - Test error: 0.16532506047293435
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 440.33s: 0.044 s/prediction
+                - Test error: 0.16419891542185858
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 460.359s: 0.046 s/prediction
+                - Test error: 0.17146125175315827
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 462.434s: 0.046 s/prediction
+                - Test error: 0.16171051921496388
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 449.52s: 0.045 s/prediction
+                - Test error: 0.17145702487345166
+        # Avg test error: 0.167
+        # StdDev test error: 0.004
+        # Precision mean: 0.864
+        # Recall mean: 0.771
+        # f-measure mean: 0.815
+        # Perfect predictions mean: 1825.2/10083 (18.102%)
 - Running for neighborhood size k = 36
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 660.547s: 0.073 s/prediction
-                - Validation error: 0.16110467948497642
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 663.687s: 0.073 s/prediction
-                - Validation error: 0.16621142113494555
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 651.22s: 0.072 s/prediction
-                - Validation error: 0.1524705536750443
-        # Avg validation error: 0.16
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 439.703s: 0.044 s/prediction
+                - Test error: 0.16296372655074284
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 452.143s: 0.045 s/prediction
+                - Test error: 0.1601342526487477
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 460.916s: 0.046 s/prediction
+                - Test error: 0.1670400209947028
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 456.316s: 0.045 s/prediction
+                - Test error: 0.15924560550165562
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 460.5s: 0.046 s/prediction
+                - Test error: 0.1676003964825391
+        # Avg test error: 0.163
+        # StdDev test error: 0.004
+        # Precision mean: 0.864
+        # Recall mean: 0.771
+        # f-measure mean: 0.814
+        # Perfect predictions mean: 2119.4/10083 (21.02%)
 - Running for neighborhood size k = 41
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 658.594s: 0.073 s/prediction
-                - Validation error: 0.15914511915669774
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 652.503s: 0.072 s/prediction
-                - Validation error: 0.1640434300931751
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 630.313s: 0.069 s/prediction
-                - Validation error: 0.150376510687052
-        # Avg validation error: 0.158
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 464.315s: 0.046 s/prediction
+                - Test error: 0.1645785993231046
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 468.568s: 0.046 s/prediction
+                - Test error: 0.15957172415533125
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 458.991s: 0.046 s/prediction
+                - Test error: 0.16363656798997278
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 466.824s: 0.046 s/prediction
+                - Test error: 0.15635780086847195
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 465.405s: 0.046 s/prediction
+                - Test error: 0.1683723513708444
+        # Avg test error: 0.163
+        # StdDev test error: 0.005
+        # Precision mean: 0.859
+        # Recall mean: 0.774
+        # f-measure mean: 0.814
+        # Perfect predictions mean: 2382.6/10083 (23.63%)
 - Running for neighborhood size k = 46
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 624.675s: 0.069 s/prediction
-                - Validation error: 0.15698826734348106
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 655.538s: 0.072 s/prediction
-                - Validation error: 0.162672765529881
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 657.638s: 0.072 s/prediction
-                - Validation error: 0.15003090874224398
-        # Avg validation error: 0.157
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 483.229s: 0.048 s/prediction
+                - Test error: 0.16317507209624488
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 482.2s: 0.048 s/prediction
+                - Test error: 0.15623731286976342
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 461.341s: 0.046 s/prediction
+                - Test error: 0.16365547027603336
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 488.819s: 0.048 s/prediction
+                - Test error: 0.154617096234125
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 456.484s: 0.045 s/prediction
+                - Test error: 0.16731622596617704
+        # Avg test error: 0.161
+        # StdDev test error: 0.005
+        # Precision mean: 0.857
+        # Recall mean: 0.772
+        # f-measure mean: 0.812
+        # Perfect predictions mean: 2605.4/10083 (25.84%)
 - Running for neighborhood size k = 51
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 669.911s: 0.074 s/prediction
-                - Validation error: 0.15684288744308
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 599.787s: 0.066 s/prediction
-                - Validation error: 0.1600155251295554
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 594.25s: 0.065 s/prediction
-                - Validation error: 0.149360181732997
-        # Avg validation error: 0.155
-        # StdDev validation error: 0.005
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 471.825s: 0.047 s/prediction
+                - Test error: 0.16257318731320775
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 460.187s: 0.046 s/prediction
+                - Test error: 0.1545430765446151
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 486.279s: 0.048 s/prediction
+                - Test error: 0.16105226633069186
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 462.094s: 0.046 s/prediction
+                - Test error: 0.1535045583805374
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 454.211s: 0.045 s/prediction
+                - Test error: 0.16650850797431946
+        # Avg test error: 0.16
+        # StdDev test error: 0.006
+        # Precision mean: 0.855
+        # Recall mean: 0.768
+        # f-measure mean: 0.809
+        # Perfect predictions mean: 2853.8/10083 (28.303%)
 - Running for neighborhood size k = 56
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 572.556s: 0.063 s/prediction
-                - Validation error: 0.15554732343455072
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 564.933s: 0.062 s/prediction
-                - Validation error: 0.15934418605890807
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 551.344s: 0.061 s/prediction
-                - Validation error: 0.1487756851761713
-        # Avg validation error: 0.155
-        # StdDev validation error: 0.005
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 492.776s: 0.049 s/prediction
+                - Test error: 0.16174853993475125
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 495.271s: 0.049 s/prediction
+                - Test error: 0.1542333600578065
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 470.544s: 0.047 s/prediction
+                - Test error: 0.1591099527459281
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 472.656s: 0.047 s/prediction
+                - Test error: 0.15242895584959185
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 476.8s: 0.047 s/prediction
+                - Test error: 0.16474123890193956
+        # Avg test error: 0.158
+        # StdDev test error: 0.005
+        # Precision mean: 0.856
+        # Recall mean: 0.765
+        # f-measure mean: 0.807
+        # Perfect predictions mean: 3089.6/10083 (30.642%)
 - Running for neighborhood size k = 61
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 563.62s: 0.062 s/prediction
-                - Validation error: 0.15520746289979034
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 576.686s: 0.064 s/prediction
-                - Validation error: 0.15647225228454664
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 578.015s: 0.064 s/prediction
-                - Validation error: 0.14602031455141046
-        # Avg validation error: 0.153
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 548.594s: 0.054 s/prediction
+                - Test error: 0.1603359168886682
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 525.909s: 0.052 s/prediction
+                - Test error: 0.15370286972924962
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 539.406s: 0.053 s/prediction
+                - Test error: 0.15758232965682964
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 533.396s: 0.053 s/prediction
+                - Test error: 0.15100623028527485
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 532.6s: 0.053 s/prediction
+                - Test error: 0.16222412152837687
+        # Avg test error: 0.157
+        # StdDev test error: 0.005
+        # Precision mean: 0.857
+        # Recall mean: 0.764
+        # f-measure mean: 0.807
+        # Perfect predictions mean: 3301.6/10083 (32.744%)
 - Running for neighborhood size k = 66
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 564.498s: 0.062 s/prediction
-                - Validation error: 0.15348529299317626
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 588.576s: 0.065 s/prediction
-                - Validation error: 0.15667799186996972
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 578.066s: 0.064 s/prediction
-                - Validation error: 0.1452983735620435
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 539.926s: 0.054 s/prediction
+                - Test error: 0.16188069266569696
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 476.367s: 0.047 s/prediction
+                - Test error: 0.15163952222214763
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 504.275s: 0.05 s/prediction
+                - Test error: 0.15644675215676476
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 484.406s: 0.048 s/prediction
+                - Test error: 0.14768189020320519
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 467.819s: 0.046 s/prediction
+                - Test error: 0.16119331007842974
+        # Avg test error: 0.156
+        # StdDev test error: 0.006
+        # Precision mean: 0.857
+        # Recall mean: 0.763
+        # f-measure mean: 0.807
+        # Perfect predictions mean: 3511.4/10083 (34.825%)
 - Running for neighborhood size k = 71
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 574.205s: 0.063 s/prediction
-                - Validation error: 0.1533082440254982
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 594.511s: 0.066 s/prediction
-                - Validation error: 0.15669183152035146
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 588.703s: 0.065 s/prediction
-                - Validation error: 0.14473524686854392
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 479.401s: 0.048 s/prediction
+                - Test error: 0.16034123479703247
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 542.385s: 0.054 s/prediction
+                - Test error: 0.151869480101221
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 552.297s: 0.055 s/prediction
+                - Test error: 0.15559037277841775
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 545.259s: 0.054 s/prediction
+                - Test error: 0.14552696332319298
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 533.202s: 0.053 s/prediction
+                - Test error: 0.16078507078867482
+        # Avg test error: 0.155
+        # StdDev test error: 0.006
+        # Precision mean: 0.857
+        # Recall mean: 0.764
+        # f-measure mean: 0.807
+        # Perfect predictions mean: 3663.4/10083 (36.332%)
 - Running for neighborhood size k = 76
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 609.992s: 0.067 s/prediction
-                - Validation error: 0.15257640160361136
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 616.059s: 0.068 s/prediction
-                - Validation error: 0.15853975259242228
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 614.442s: 0.068 s/prediction
-                - Validation error: 0.14348598829051828
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 551.319s: 0.055 s/prediction
+                - Test error: 0.16070737785795058
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 543.784s: 0.054 s/prediction
+                - Test error: 0.15067548376266218
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 554.409s: 0.055 s/prediction
+                - Test error: 0.15645742030624574
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 549.378s: 0.054 s/prediction
+                - Test error: 0.14460854947019164
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 547.97s: 0.054 s/prediction
+                - Test error: 0.1636879026506471
+        # Avg test error: 0.155
+        # StdDev test error: 0.008
+        # Precision mean: 0.856
+        # Recall mean: 0.766
+        # f-measure mean: 0.808
+        # Perfect predictions mean: 3825.6/10083 (37.941%)
 - Running for neighborhood size k = 81
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 606.381s: 0.067 s/prediction
-                - Validation error: 0.15261519510449312
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 640.037s: 0.071 s/prediction
-                - Validation error: 0.15879494024999177
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 681.135s: 0.075 s/prediction
-                - Validation error: 0.14281030140426293
-        # Avg validation error: 0.151
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 547.615s: 0.054 s/prediction
+                - Test error: 0.15966828507390135
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (99.99%)
+                - Computed 10083 predictions in 506.854s: 0.05 s/prediction
+                - Test error: 0.149573915247944
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 521.074s: 0.052 s/prediction
+                - Test error: 0.1562103753557869
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 528.194s: 0.052 s/prediction
+                - Test error: 0.1444755120327724
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 553.283s: 0.055 s/prediction
+                - Test error: 0.16534283220095994
+        # Avg test error: 0.155
+        # StdDev test error: 0.008
+        # Precision mean: 0.854
+        # Recall mean: 0.765
+        # f-measure mean: 0.807
+        # Perfect predictions mean: 3948.6/10083 (39.161%)
 - Running for neighborhood size k = 86
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 669.338s: 0.074 s/prediction
-                - Validation error: 0.15251345934507746
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 634.476s: 0.07 s/prediction
-                - Validation error: 0.1600082608080183
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 619.112s: 0.068 s/prediction
-                - Validation error: 0.14296007262597907
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.009
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 566.442s: 0.056 s/prediction
+                - Test error: 0.1581959462762084
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 568.026s: 0.056 s/prediction
+                - Test error: 0.1494320695451996
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 566.362s: 0.056 s/prediction
+                - Test error: 0.15735126248196643
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 566.13s: 0.056 s/prediction
+                - Test error: 0.14418386523765664
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 566.41s: 0.056 s/prediction
+                - Test error: 0.16149166623836422
+        # Avg test error: 0.154
+        # StdDev test error: 0.007
+        # Precision mean: 0.852
+        # Recall mean: 0.765
+        # f-measure mean: 0.805
+        # Perfect predictions mean: 4076.2/10083 (40.426%)
 - Running for neighborhood size k = 91
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 621.325s: 0.068 s/prediction
-                - Validation error: 0.15337127676029824
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 638.827s: 0.07 s/prediction
-                - Validation error: 0.15930183134343978
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 630.547s: 0.069 s/prediction
-                - Validation error: 0.14264504230510897
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 574.117s: 0.057 s/prediction
+                - Test error: 0.15698832182775813
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 542.606s: 0.054 s/prediction
+                - Test error: 0.14958086655776104
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 553.012s: 0.055 s/prediction
+                - Test error: 0.15702548021107815
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 529.763s: 0.053 s/prediction
+                - Test error: 0.14390199547503302
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 522.246s: 0.052 s/prediction
+                - Test error: 0.15824747841802064
+        # Avg test error: 0.153
+        # StdDev test error: 0.006
+        # Precision mean: 0.85
+        # Recall mean: 0.766
+        # f-measure mean: 0.805
+        # Perfect predictions mean: 4176.6/10083 (41.422%)
 - Running for neighborhood size k = 96
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 651.746s: 0.072 s/prediction
-                - Validation error: 0.1541892259953307
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 671.714s: 0.074 s/prediction
-                - Validation error: 0.15887549936970377
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 637.9s: 0.07 s/prediction
-                - Validation error: 0.1428732404056222
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 530.39s: 0.053 s/prediction
+                - Test error: 0.15590468313181727
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 535.922s: 0.053 s/prediction
+                - Test error: 0.14940474545919386
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 564.274s: 0.056 s/prediction
+                - Test error: 0.15787962080775408
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 553.384s: 0.055 s/prediction
+                - Test error: 0.14403429194971054
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 555.34s: 0.055 s/prediction
+                - Test error: 0.15810327192184817
+        # Avg test error: 0.153
+        # StdDev test error: 0.006
+        # Precision mean: 0.85
+        # Recall mean: 0.764
+        # f-measure mean: 0.804
+        # Perfect predictions mean: 4299.8/10083 (42.644%)
 - Running for neighborhood size k = 101
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 635.711s: 0.07 s/prediction
-                - Validation error: 0.15443185343679333
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 671.668s: 0.074 s/prediction
-                - Validation error: 0.15831616290445924
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 680.936s: 0.075 s/prediction
-                - Validation error: 0.14289173842370242
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 560.736s: 0.056 s/prediction
+                - Test error: 0.15685125154437546
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 564.285s: 0.056 s/prediction
+                - Test error: 0.14876718918182716
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 561.362s: 0.056 s/prediction
+                - Test error: 0.15801751386263937
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 521.828s: 0.052 s/prediction
+                - Test error: 0.14551826991939737
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 551.828s: 0.055 s/prediction
+                - Test error: 0.16039158252955513
+        # Avg test error: 0.154
+        # StdDev test error: 0.006
+        # Precision mean: 0.848
+        # Recall mean: 0.764
+        # f-measure mean: 0.803
+        # Perfect predictions mean: 4376.8/10083 (43.408%)
 - Running for neighborhood size k = 106
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 731.32s: 0.081 s/prediction
-                - Validation error: 0.15358576420475448
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 742.303s: 0.082 s/prediction
-                - Validation error: 0.158710004023929
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 736.324s: 0.081 s/prediction
-                - Validation error: 0.14293475174053427
-        # Avg validation error: 0.152
-        # StdDev validation error: 0.008
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 532.268s: 0.053 s/prediction
+                - Test error: 0.15599113160101058
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 529.082s: 0.052 s/prediction
+                - Test error: 0.1492369891424017
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 536.008s: 0.053 s/prediction
+                - Test error: 0.1569979656921102
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 533.527s: 0.053 s/prediction
+                - Test error: 0.1456073674427843
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 531.995s: 0.053 s/prediction
+                - Test error: 0.1584396322081543
+        # Avg test error: 0.153
+        # StdDev test error: 0.006
+        # Precision mean: 0.847
+        # Recall mean: 0.764
+        # f-measure mean: 0.802
+        # Perfect predictions mean: 4468.6/10083 (44.318%)
 - Running for neighborhood size k = 111
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 736.649s: 0.081 s/prediction
-                - Validation error: 0.1535390507403719
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 748.991s: 0.083 s/prediction
-                - Validation error: 0.15858591549522177
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 751.736s: 0.083 s/prediction
-                - Validation error: 0.14725378573483983
-        # Avg validation error: 0.153
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 535.048s: 0.053 s/prediction
+                - Test error: 0.1559534058004459
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 531.89s: 0.053 s/prediction
+                - Test error: 0.14936297998538936
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 545.211s: 0.054 s/prediction
+                - Test error: 0.15611251791824457
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 540.147s: 0.054 s/prediction
+                - Test error: 0.14498606369743883
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 539.764s: 0.054 s/prediction
+                - Test error: 0.158680342201239
+        # Avg test error: 0.153
+        # StdDev test error: 0.006
+        # Precision mean: 0.845
+        # Recall mean: 0.764
+        # f-measure mean: 0.802
+        # Perfect predictions mean: 4534.2/10083 (44.969%)
 - Running for neighborhood size k = 116
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 738.431s: 0.081 s/prediction
-                - Validation error: 0.15346864479688543
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 760.754s: 0.084 s/prediction
-                - Validation error: 0.15952109085827812
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 746.028s: 0.082 s/prediction
-                - Validation error: 0.14703853123332367
-        # Avg validation error: 0.153
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 517.544s: 0.051 s/prediction
+                - Test error: 0.1560059622444363
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 510.171s: 0.051 s/prediction
+                - Test error: 0.14917737698331615
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 521.907s: 0.052 s/prediction
+                - Test error: 0.15568002336461254
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 517.849s: 0.051 s/prediction
+                - Test error: 0.1464868570321782
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 511.767s: 0.051 s/prediction
+                - Test error: 0.15910759721177803
+        # Avg test error: 0.153
+        # StdDev test error: 0.005
+        # Precision mean: 0.844
+        # Recall mean: 0.765
+        # f-measure mean: 0.802
+        # Perfect predictions mean: 4572.0/10083 (45.344%)
 - Running for neighborhood size k = 121
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 970.646s: 0.107 s/prediction
-                - Validation error: 0.15255314208974946
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 845.795s: 0.093 s/prediction
-                - Validation error: 0.16091684991993008
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 853.023s: 0.094 s/prediction
-                - Validation error: 0.14725999624806163
-        # Avg validation error: 0.154
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 525.493s: 0.052 s/prediction
+                - Test error: 0.1557958360106927
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 513.95s: 0.051 s/prediction
+                - Test error: 0.14885600978177616
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 524.81s: 0.052 s/prediction
+                - Test error: 0.15513944816084618
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 491.715s: 0.049 s/prediction
+                - Test error: 0.1458824681511144
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 484.201s: 0.048 s/prediction
+                - Test error: 0.15765693381634618
+        # Avg test error: 0.153
+        # StdDev test error: 0.005
+        # Precision mean: 0.844
+        # Recall mean: 0.766
+        # f-measure mean: 0.802
+        # Perfect predictions mean: 4635.0/10083 (45.968%)
 - Running for neighborhood size k = 126
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 838.566s: 0.092 s/prediction
-                - Validation error: 0.15254170627150931
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 860.696s: 0.095 s/prediction
-                - Validation error: 0.1594027552123529
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 866.703s: 0.096 s/prediction
-                - Validation error: 0.15193411979307622
-        # Avg validation error: 0.155
-        # StdDev validation error: 0.004
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 490.371s: 0.049 s/prediction
+                - Test error: 0.15622468569269132
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 486.115s: 0.048 s/prediction
+                - Test error: 0.14866060595163588
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 497.189s: 0.049 s/prediction
+                - Test error: 0.1549774390421495
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 493.772s: 0.049 s/prediction
+                - Test error: 0.15326341864341625
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 487.583s: 0.048 s/prediction
+                - Test error: 0.1594380577032795
+        # Avg test error: 0.155
+        # StdDev test error: 0.004
+        # Precision mean: 0.842
+        # Recall mean: 0.766
+        # f-measure mean: 0.802
+        # Perfect predictions mean: 4684.2/10083 (46.456%)
 - Running for neighborhood size k = 131
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 877.596s: 0.097 s/prediction
-                - Validation error: 0.1526578314300512
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 856.08s: 0.094 s/prediction
-                - Validation error: 0.16007307332269352
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 759.068s: 0.084 s/prediction
-                - Validation error: 0.1482550271147208
-        # Avg validation error: 0.154
-        # StdDev validation error: 0.006
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 495.178s: 0.049 s/prediction
+                - Test error: 0.15707451017312118
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 487.503s: 0.048 s/prediction
+                - Test error: 0.1486251180560726
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 498.874s: 0.049 s/prediction
+                - Test error: 0.15538541075004395
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 499.678s: 0.05 s/prediction
+                - Test error: 0.15032889047771378
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 491.313s: 0.049 s/prediction
+                - Test error: 0.1595795763361023
+        # Avg test error: 0.154
+        # StdDev test error: 0.005
+        # Precision mean: 0.84
+        # Recall mean: 0.767
+        # f-measure mean: 0.801
+        # Perfect predictions mean: 4724.2/10083 (46.853%)
 - Running for neighborhood size k = 136
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 770.502s: 0.085 s/prediction
-                - Validation error: 0.1525000221591266
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 767.198s: 0.085 s/prediction
-                - Validation error: 0.16250495662144068
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 768.725s: 0.085 s/prediction
-                - Validation error: 0.14805658958776904
-        # Avg validation error: 0.154
-        # StdDev validation error: 0.007
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 501.629s: 0.05 s/prediction
+                - Test error: 0.1574473363261348
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 494.891s: 0.049 s/prediction
+                - Test error: 0.14835706323221842
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 504.15s: 0.05 s/prediction
+                - Test error: 0.15384213725304766
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 504.134s: 0.05 s/prediction
+                - Test error: 0.1506857533783339
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 496.85s: 0.049 s/prediction
+                - Test error: 0.1597803259494471
+        # Avg test error: 0.154
+        # StdDev test error: 0.005
+        # Precision mean: 0.84
+        # Recall mean: 0.767
+        # f-measure mean: 0.801
+        # Perfect predictions mean: 4749.8/10083 (47.107%)
 - Running for neighborhood size k = 141
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 956.032s: 0.105 s/prediction
-                - Validation error: 0.15231051287321298
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 871.322s: 0.096 s/prediction
-                - Validation error: 0.16585176191791873
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 849.835s: 0.094 s/prediction
-                - Validation error: 0.14796564871570156
-        # Avg validation error: 0.155
-        # StdDev validation error: 0.009
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 497.654s: 0.049 s/prediction
+                - Test error: 0.15773502383046925
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 498.726s: 0.049 s/prediction
+                - Test error: 0.14866605565771857
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 508.481s: 0.05 s/prediction
+                - Test error: 0.1542980308357229
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 505.326s: 0.05 s/prediction
+                - Test error: 0.15627120501569366
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 499.743s: 0.05 s/prediction
+                - Test error: 0.1605028104522111
+        # Avg test error: 0.155
+        # StdDev test error: 0.004
+        # Precision mean: 0.839
+        # Recall mean: 0.766
+        # f-measure mean: 0.8
+        # Perfect predictions mean: 4773.4/10083 (47.341%)
 - Running for neighborhood size k = 146
-        - Iteration 1/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 815.993s: 0.09 s/prediction
-                - Validation error: 0.15203278091440317
-        - Iteration 2/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 803.917s: 0.089 s/prediction
-                - Validation error: 0.16497818382564858
-        - Iteration 3/3
-                - URM density: 1.374%
-                - Computing prediction 9075/9075 (100.0%)
-                - Computed 9075 predictions in 926.988s: 0.102 s/prediction
-                - Validation error: 0.14850500844632614
-        # Avg validation error: 0.155
-        # StdDev validation error: 0.009
-✓ Trained
+        - Iteration 1/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 503.779s: 0.05 s/prediction
+                - Test error: 0.16146205137631148
+        - Iteration 2/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 498.202s: 0.049 s/prediction
+                - Test error: 0.14876926854646066
+        - Iteration 3/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 509.126s: 0.05 s/prediction
+                - Test error: 0.15493131307477062
+        - Iteration 4/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 505.498s: 0.05 s/prediction
+                - Test error: 0.15192389688430744
+        - Iteration 5/5
+                - URM density: 1.527%
+                - Computing prediction 10083/10083 (100.0%)
+                - Computed 10083 predictions in 500.314s: 0.05 s/prediction
+                - Test error: 0.19243452426998742
+        # Avg test error: 0.162
+        # StdDev test error: 0.018
+        # Precision mean: 0.839
+        # Recall mean: 0.764
+        # f-measure mean: 0.799
+        # Perfect predictions mean: 4796.2/10083 (47.567%)
+✓ Operation completed
 Press a key to continue...
 
 
 Model selection...
- ✓ Best neighborhood size k = 81
-
-Evaluating performance on test set...
- # URM shape is (610, 9742)
- # URM density is 1.527%
-                - Computing prediction 10083/10083 (100.0%)
-                - Computed 10083 predictions in 930.223s: 0.092 s/prediction
-MAE on test set is 0.15966828507390135
-Precision on test set is 0.8464757709251102
-Recall on test set is 0.7918813105295693
-F-Measure is 0.8182689236665602
-Perfect predictions: 3823/10083
+ ✓ Best neighborhood size k = 121
